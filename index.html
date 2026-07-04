@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VisualStories | Premium Cinematic Production</title>
     
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -58,9 +59,6 @@
             background: #e5e5e5;
             border-radius: 10px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-ultra-muted);
-        }
 
         /* Layout Framework */
         .container {
@@ -71,8 +69,26 @@
         }
 
         .section-spacer {
-            padding: 140px 0;
+            padding: 120px 0;
             position: relative;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 50px;
         }
 
         /* Interactive Light Particle Canvas */
@@ -133,7 +149,7 @@
         }
 
         /* ==========================================================================
-           2. NAVIGATION & MULTIPAGE HEADER SYSTEM
+           2. NAVIGATION SYSTEM
            ========================================================================== */
         header {
             position: fixed;
@@ -145,7 +161,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 999;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
@@ -171,7 +187,6 @@
             color: var(--accent-gold);
         }
 
-        /* Klasické menu odkazujúce na skutočné samostatné .html súbory */
         .main-nav-desktop {
             display: flex;
             gap: 40px;
@@ -203,24 +218,11 @@
             transition: transform 0.6s var(--curve-premium);
         }
 
-        .nav-link:hover {
-            color: var(--accent-gold);
-        }
+        .nav-link:hover { color: var(--accent-gold); }
+        .nav-link:hover::after { transform: scaleX(1); transform-origin: left center; }
+        .nav-link.active { color: var(--accent-gold); }
+        .nav-link.active::after { transform: scaleX(1); }
 
-        .nav-link:hover::after {
-            transform: scaleX(1);
-            transform-origin: left center;
-        }
-
-        .nav-link.active {
-            color: var(--accent-gold);
-        }
-        
-        .nav-link.active::after {
-            transform: scaleX(1);
-        }
-
-        /* Mobile Hamburger Engine Trigger */
         .menu-trigger {
             display: none;
             background: transparent;
@@ -239,7 +241,7 @@
         }
 
         /* ==========================================================================
-           3. HERO MASSTHEAD CINEMATIC SECTION
+           3. HERO & CONTENT LAYOUT STYLING
            ========================================================================== */
         .hero-viewport {
             height: 100vh;
@@ -259,16 +261,6 @@
             width: 100%;
         }
 
-        .hero-tagline {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--accent-gold);
-            margin-bottom: 25px;
-            display: block;
-        }
-
         .hero-viewport h1 {
             font-family: var(--font-serif);
             font-size: 4.5rem;
@@ -286,13 +278,6 @@
             max-width: 540px;
             margin-bottom: 50px;
             font-weight: 300;
-            line-height: 1.8;
-        }
-
-        .action-group {
-            display: flex;
-            gap: 20px;
-            align-items: center;
         }
 
         .premium-btn {
@@ -300,7 +285,6 @@
             background: var(--accent);
             color: #ffffff;
             border: 1px solid var(--accent);
-            border-radius: 0;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -314,23 +298,6 @@
             background: transparent;
             color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-        }
-
-        .secondary-btn {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 20px 0;
-            display: inline-block;
-            transition: color 0.3s;
-        }
-
-        .secondary-btn:hover {
-            color: var(--accent-gold);
         }
 
         .hero-media-wrapper {
@@ -338,7 +305,6 @@
             height: 65vh;
             background: var(--bg-soft);
             overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.04);
             border: 1px solid var(--border-color);
         }
 
@@ -346,81 +312,129 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1.2s var(--curve-premium);
         }
 
-        .hero-media-wrapper:hover img {
+        /* About Section Layout */
+        .about-team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .member-card {
+            background: var(--bg-soft);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .member-img-frame {
+            height: 480px;
+            background: #eaeaea;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .member-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--curve-premium);
+        }
+
+        .member-card:hover .member-img-frame img {
             transform: scale(1.03);
         }
 
-        /* ==========================================================================
-           4. FEATURED STATEMENT / INTRODUCTION
-           ========================================================================== */
-        .statement-box {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
+        .member-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
         }
 
-        .statement-box h2 {
-            font-family: var(--font-serif);
-            font-size: 2.8rem;
-            font-weight: 400;
-            line-height: 1.4;
+        .member-role {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* Showcase Work System */
+        .showcase-tabs {
+            display: flex;
+            gap: 30px;
             margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--text-ultra-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
             color: var(--text-main);
         }
 
-        .statement-box h2 strong {
-            font-weight: 700;
-            border-bottom: 2px solid var(--accent-gold);
+        .work-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
 
-        /* Footer Basic Layout */
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid var(--border-color);
+        .work-item {
             background: var(--bg-soft);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
             position: relative;
-            z-index: 5;
         }
 
-        .footer-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .work-media-box {
+            height: 380px;
+            background: #eee;
+            position: relative;
+            overflow: hidden;
         }
 
-        .copyright {
-            font-size: 0.9rem;
+        .work-media-box video, .work-media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-meta {
+            padding: 25px;
+        }
+
+        .work-meta h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .work-meta span {
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        .socials {
-            display: flex;
-            gap: 25px;
-        }
-
-        .socials a {
-            color: var(--text-main);
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        .socials a:hover {
-            color: var(--accent-gold);
-        }
-
-        /* Basic Mobile Layout Fixes */
+        /* Responsive */
         @media (max-width: 1024px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-desc { margin: 0 auto 40px; }
-            .action-group { justify-content: center; }
-            .hero-media-wrapper { height: 45vh; }
+            .hero-grid, .about-team-grid, .work-grid-container { grid-template-columns: 1fr; }
             .main-nav-desktop { display: none; }
             .menu-trigger { display: flex; }
-            .container { padding: 0 30px; }
-            header { padding: 25px 30px; }
+            header, .container { padding: 25px 30px; }
+            .hero-media-wrapper { height: 45vh; }
         }
     </style>
 </head>
@@ -460,25 +474,118 @@
                     <span class="hero-tagline">Cinematic Production Studio</span>
                     <h1>Zachytené<br>Umelecké Emócie</h1>
                     <p class="hero-desc">Spájame svetovú filmovú estetiku, precízny sound design a nadčasovú reportážnu fotografiu do jedného čistého vizuálneho celku.</p>
-                    <div class="action-group">
-                        <a href="portfolio.html" class="premium-btn">Pozrieť tvorbu</a>
-                        <a href="kontakt.html" class="secondary-btn">Dohodnúť termín &rarr;</a>
-                    </div>
+                    <a href="portfolio.html" class="premium-btn">Pozrieť portfólio</a>
                 </div>
                 <div class="hero-media-wrapper">
-                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200" alt="Cinematic Production Main">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200" alt="VisualStories Cinematic Asset">
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- PREDSTAVENIE PRODUKČNÉHO TÍMU -->
     <section class="container section-spacer">
-        <div class="statement-box">
-            <h2>Sme presvedčení, že tie najlepšie príbehy sa píšu samé. Našou úlohou je iba byť v správny čas na správnom mieste a zachytiť ich s <strong>maximálnou eleganciou</strong>.</h2>
+        <span class="meta-label">01 // KTO SME</span>
+        <h2 class="section-title">Spoznajte Náš Tím</h2>
+        
+        <div class="about-team-grid">
+            <div class="member-card">
+                <div class="member-img-frame">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="Peter - Kameraman">
+                </div>
+                <span class="member-role">Director of Photography</span>
+                <h3>Peter</h3>
+                <p class="hero-desc">Moja práca spočíva v hľadaní dokonalého svetla, kinematografickej kompozície a precízneho strihu na hudobné tempo, ktoré filmu vdýchne filmovú atmosféru.</p>
+            </div>
+
+            <div class="member-card">
+                <div class="member-img-frame">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600" alt="Veronika - Fotografka">
+                </div>
+                <span class="member-role">Lead Art Photographer</span>
+                <h3>Veronika</h3>
+                <p class="hero-desc">Zameriavam sa na úprimné momenty, nečakané pohľady a čisté emócie. Verím, že najvzácnejšie fotografie vznikajú spontánne a bez aranžovania.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- UKÁŽKY NAJNOVŠEJ TVORBY (3 VIDEÁ + 3 FOTOGRAFIE) -->
+    <section class="container section-spacer">
+        <span class="meta-label">02 // PORTFOLIO TEASER</span>
+        <h2 class="section-title">Najnovšie Projekty</h2>
+
+        <div class="showcase-tabs">
+            <button class="tab-btn active" data-filter="all">Všetko</button>
+            <button class="tab-btn" data-filter="video">Filmy</button>
+            <button class="tab-btn" data-filter="photo">Fotografie</button>
+        </div>
+        
+        <div class="work-grid-container">
+            <!-- Video 1 -->
+            <div class="work-item" data-type="video">
+                <div class="work-media-box">
+                    <video src="video1.mov" muted loop autoplay playsinline></video>
+                </div>
+                <div class="work-meta">
+                    <h4>Cinematic Wedding Tale</h4>
+                    <span>Súbor: video1.mov</span>
+                </div>
+            </div>
+            <!-- Video 2 -->
+            <div class="work-item" data-type="video">
+                <div class="work-media-box">
+                    <video src="video2.mov" muted loop autoplay playsinline></video>
+                </div>
+                <div class="work-meta">
+                    <h4>High School Gala Clip</h4>
+                    <span>Súbor: video2.mov</span>
+                </div>
+            </div>
+            <!-- Video 3 -->
+            <div class="work-item" data-type="video">
+                <div class="work-media-box">
+                    <video src="video3.mov" muted loop autoplay playsinline></video>
+                </div>
+                <div class="work-meta">
+                    <h4>Commercial Editorial</h4>
+                    <span>Súbor: video3.mov</span>
+                </div>
+            </div>
+
+            <!-- Foto 1 -->
+            <div class="work-item" data-type="photo">
+                <div class="work-media-box">
+                    <img src="foto1.jpg" alt="Umelecká fotografia 1">
+                </div>
+                <div class="work-meta">
+                    <h4>Fine Art Portrait</h4>
+                    <span>Súbor: foto1.jpg</span>
+                </div>
+            </div>
+            <!-- Foto 2 -->
+            <div class="work-item" data-type="photo">
+                <div class="work-media-box">
+                    <img src="foto2.jpg" alt="Umelecká fotografia 2">
+                </div>
+                <div class="work-meta">
+                    <h4>Emotional Ceremony Capture</h4>
+                    <span>Súbor: foto2.jpg</span>
+                </div>
+            </div>
+            <!-- Foto 3 -->
+            <div class="work-item" data-type="photo">
+                <div class="work-media-box">
+                    <img src="foto3.jpg" alt="Umelecká fotografia 3">
+                </div>
+                <div class="work-meta">
+                    <h4>Sunset Editorial Frame</h4>
+                    <span>Súbor: foto3.jpg</span>
+                </div>
+            </div>
         </div>
     </section>
     <style>
-        /* Mobile Navigation Overlay styling inside the core framework */
+        /* Mobilné menu prekrývanie */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -531,6 +638,40 @@
             color: var(--text-ultra-muted);
             margin-right: 20px;
             font-weight: 600;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-soft);
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .socials {
+            display: flex;
+            gap: 25px;
+        }
+
+        .socials a {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .socials a:hover {
+            color: var(--accent-gold);
         }
     </style>
 
@@ -605,7 +746,6 @@
                             ease: 'power2.out',
                             onComplete: () => {
                                 preloader.style.display = 'none';
-                                // Spustenie animácií po načítaní
                                 core.modules['AnimationEngine'].triggerHeroAnimations();
                             }
                         });
@@ -644,7 +784,7 @@
                         this.radius = Math.random() * 2 + 0.5;
                         this.vx = Math.random() * 0.1 - 0.05;
                         this.vy = Math.random() * 0.1 - 0.05;
-                        this.alpha = Math.random() * 0.15 + 0.05;
+                        this.alpha = Math.random() * 0.12 + 0.04;
                     }
                     update() {
                         this.x += this.vx;
@@ -654,7 +794,7 @@
                         }
                     }
                     draw() {
-                        ctx.fillStyle = `rgba(197, 168, 92, ${this.alpha})`; // Elegantná zlatá
+                        ctx.fillStyle = `rgba(197, 168, 92, ${this.alpha})`; // Elegantná luxusná zlatá tónovaná do biela
                         ctx.beginPath();
                         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                         ctx.fill();
@@ -686,7 +826,6 @@
                 const menuBtn = document.getElementById('menu-btn');
                 const mobileMenu = document.getElementById('mobile-menu');
 
-                // Detekcia posunu pre transformáciu hlavičky
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 40) {
                         header.classList.add('scrolled');
@@ -695,7 +834,6 @@
                     }
                 });
 
-                // Riadenie mobilného menu
                 if (menuBtn && mobileMenu) {
                     menuBtn.addEventListener('click', () => {
                         mobileMenu.classList.toggle('is-active');
@@ -714,11 +852,38 @@
         };
 
         /**
-         * MODUL D: Pokročilé úvodné animácie (GSAP Engine Integration)
+         * MODUL D: Dynamická filtrácia portfólia (Teaser Grid)
+         */
+        const PortfolioFilterModule = {
+            init() {
+                const buttons = document.querySelectorAll('.tab-btn');
+                const items = document.querySelectorAll('.work-item');
+
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+
+                        const filter = btn.getAttribute('data-filter');
+
+                        items.forEach(item => {
+                            const type = item.getAttribute('data-type');
+                            if (filter === 'all' || filter === type) {
+                                gsap.to(item, { opacity: 1, scale: 1, duration: 0.4, display: 'block', ease: 'power2.out' });
+                            } else {
+                                gsap.to(item, { opacity: 0, scale: 0.9, duration: 0.4, display: 'none', ease: 'power2.out' });
+                            }
+                        });
+                    });
+                });
+            }
+        };
+
+        /**
+         * MODUL E: Pokročilé úvodné animácie (GSAP Engine)
          */
         const AnimationEngine = {
             init() {
-                // Skrytie prvkov pred animáciou
                 gsap.set('.hero-text-block > *', { opacity: 0, y: 30 });
                 gsap.set('.hero-media-wrapper', { opacity: 0, scale: 0.96 });
             },
@@ -742,12 +907,13 @@
         };
 
         /**
-         * INICIALIZÁCIA SYSTÉMU
+         * INICIALIZÁCIA COMPONENT FRAMEWORKU
          */
         const app = new ApplicationCore();
         app.registerModule('Preloader', PreloaderModule);
         app.registerModule('Particles', CanvasParticleSystem);
         app.registerModule('Navigation', HeaderNavigationModule);
+        app.registerModule('Filter', PortfolioFilterModule);
         app.registerModule('AnimationEngine', AnimationEngine);
         
         document.addEventListener('DOMContentLoaded', () => app.initAll());
