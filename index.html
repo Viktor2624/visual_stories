@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisualStories | Ultra Premium Cinematic Production</title>
+    <title>VisualStories | Premium Cinematic Production</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* ==========================================================================
-           1. RESET & ARCHITECTURE SYSTEM
+           1. PREMIUM LIGHT DESIGN SYSTEM & RESET
            ========================================================================== */
         *, *::before, *::after {
             margin: 0;
@@ -20,59 +20,49 @@
             box-sizing: border-box;
             user-select: none;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         :root {
-            --bg-pure: #020204;
-            --bg-dark: #07070a;
-            --bg-card: #0c0c12;
-            --bg-card-light: #141420;
-            --accent: #e5c158;
-            --accent-bright: #fff0c2;
-            --accent-dim: rgba(229, 193, 88, 0.15);
-            --text-main: #f9fafb;
-            --text-muted: #a1a1aa;
-            --text-dark: #4b4b54;
+            --bg-pure: #ffffff;
+            --bg-soft: #f8f9fa;
+            --bg-card: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --accent: #111111;
+            --accent-gold: #c5a85c;
+            --text-main: #0a0a0a;
+            --text-muted: #666666;
+            --text-ultra-muted: #999999;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
             --curve-premium: cubic-bezier(0.16, 1, 0.3, 1);
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --shadow-dark: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-        html {
-            scroll-behavior: linear;
-            background-color: var(--bg-pure);
-            overflow-x: hidden;
-        }
-
-        body {
+        html, body {
             background-color: var(--bg-pure);
             color: var(--text-main);
             font-family: var(--font-sans);
             min-height: 100vh;
             overflow-x: hidden;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
-        /* Custom Scrollbar Core */
+        /* Custom Light Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
             background: var(--bg-pure);
         }
         ::-webkit-scrollbar-thumb {
-            background: #181826;
-            border-radius: 20px;
-            border: 2px solid var(--bg-pure);
+            background: #e5e5e5;
+            border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
+            background: var(--text-ultra-muted);
         }
 
-        /* Framework Layout Components */
+        /* Layout Framework */
         .container {
             width: 100%;
             max-width: 1440px;
@@ -81,52 +71,11 @@
         }
 
         .section-spacer {
-            padding: 180px 0;
+            padding: 140px 0;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-            z-index: 5;
         }
 
-        .meta-num {
-            font-family: var(--font-serif);
-            font-size: 0.9rem;
-            color: var(--accent);
-            display: block;
-            margin-bottom: 25px;
-            font-weight: 700;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 4rem;
-            text-transform: uppercase;
-            line-height: 1.15;
-            margin-bottom: 30px;
-            letter-spacing: -1px;
-        }
-
-        .section-title span {
-            display: block;
-            font-weight: 400;
-            color: var(--text-muted);
-            font-size: 2.5rem;
-            font-family: var(--font-sans);
-            letter-spacing: 0;
-            text-transform: none;
-            margin-top: 5px;
-        }
-
-        .section-desc {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 750px;
-            margin-bottom: 90px;
-            font-weight: 300;
-        }
-
-        /* FX Canvas Grid Background */
+        /* Interactive Light Particle Canvas */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -137,52 +86,39 @@
             pointer-events: none;
         }
 
-        .vignette-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 2;
-            pointer-events: none;
-            background: radial-gradient(circle at center, transparent 20%, rgba(2,2,4,0.92) 100%);
-        }
-
-        /* Ultra Preloader Animation Engine */
+        /* Premium Preloader Component */
         .ultra-preloader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #010102;
+            background: #ffffff;
             z-index: 99999;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 1s var(--curve-premium), transform 1s var(--curve-premium);
         }
 
         .loader-context {
             text-align: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 320px;
         }
 
         .loader-title {
             font-family: var(--font-serif);
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: 12px;
-            margin-bottom: 40px;
-            color: #fff;
-            text-shadow: 0 0 30px rgba(255,255,255,0.1);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: var(--text-main);
         }
 
         .loader-track {
             width: 100%;
-            height: 1px;
-            background: rgba(255,255,255,0.03);
+            height: 2px;
+            background: #f0f0f0;
             position: relative;
             overflow: hidden;
         }
@@ -193,20 +129,11 @@
             left: 0;
             height: 100%;
             width: 0%;
-            background: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-        }
-
-        .loader-number {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 25px;
-            letter-spacing: 4px;
-            font-weight: 600;
+            background: var(--accent-gold);
         }
 
         /* ==========================================================================
-           2. HEADER & FULLSCREEN NAVIGATION NAVIGATION
+           2. NAVIGATION & MULTIPAGE HEADER SYSTEM
            ========================================================================== */
         header {
             position: fixed;
@@ -218,1072 +145,242 @@
             justify-content: space-between;
             align-items: center;
             z-index: 999;
-            background: linear-gradient(to bottom, rgba(2,2,4,0.9) 0%, transparent 100%);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.01);
-            transition: padding 0.4s var(--curve-premium), background 0.4s var(--curve-premium);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
         }
 
-        header.scentered {
+        header.scrolled {
             padding: 20px 60px;
-            background: rgba(2,2,4,0.95);
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
 
         .brand-logo {
             font-family: var(--font-serif);
-            font-size: 1.7rem;
-            font-weight: 900;
-            letter-spacing: 6px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
             color: var(--text-main);
             text-decoration: none;
             text-transform: uppercase;
-            transition: var(--transition-smooth);
         }
 
         .brand-logo span {
-            color: var(--accent);
+            color: var(--accent-gold);
         }
 
-        .brand-logo:hover {
-            letter-spacing: 8px;
+        /* Klasické menu odkazujúce na skutočné samostatné .html súbory */
+        .main-nav-desktop {
+            display: flex;
+            gap: 40px;
+            list-style: none;
         }
 
+        .nav-link {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition: transform 0.6s var(--curve-premium);
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left center;
+        }
+
+        .nav-link.active {
+            color: var(--accent-gold);
+        }
+        
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Mobile Hamburger Engine Trigger */
         .menu-trigger {
+            display: none;
             background: transparent;
             border: none;
-            display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
-            z-index: 1001;
-            padding: 15px;
-            transition: var(--transition-smooth);
         }
 
         .menu-trigger span {
             display: block;
-            width: 36px;
-            height: 1px;
-            background: #fff;
-            transition: transform 0.6s var(--curve-premium), background-color 0.4s;
-        }
-
-        .fullscreen-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #030305;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            padding: 0 15%;
-            transform: translateY(-100%);
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-        }
-
-        .fullscreen-menu.is-open {
-            transform: translateY(0);
-        }
-
-        .menu-nav-list {
-            list-style: none;
-        }
-
-        .menu-nav-item {
-            margin: 35px 0;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-
-        .menu-nav-link {
-            font-family: var(--font-serif);
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255,255,255,0.12);
-            text-decoration: none;
-            text-transform: uppercase;
-            display: inline-block;
-            transition: transform 0.6s var(--curve-premium), color 0.6s;
-            transform-origin: left center;
-        }
-
-        .menu-nav-link:hover {
-            color: var(--text-main);
-            -webkit-text-stroke: 1px var(--text-main);
-            transform: translateX(30px) rotateZ(1deg);
-        }
-
-        .menu-nav-link span {
-            color: var(--accent);
-            font-family: var(--font-sans);
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-right: 30px;
-            display: inline-block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-main);
+            transition: var(--transition-smooth);
         }
 
         /* ==========================================================================
-           3. HERO CINEMATIC PACK
+           3. HERO MASSTHEAD CINEMATIC SECTION
            ========================================================================== */
         .hero-viewport {
             height: 100vh;
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
             z-index: 4;
-            text-align: center;
+            padding-top: 100px;
         }
 
-        .hero-master-box {
-            max-width: 1200px;
-            padding: 0 30px;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
         }
 
         .hero-tagline {
-            font-size: 1rem;
-            font-weight: 800;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 10px;
-            color: var(--accent);
-            margin-bottom: 35px;
+            letter-spacing: 6px;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
             display: block;
-            animation: fadeInDown 1.5s var(--curve-premium);
         }
 
         .hero-viewport h1 {
             font-family: var(--font-serif);
-            font-size: 7rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            line-height: 1.05;
+            line-height: 1.15;
             text-transform: uppercase;
-            margin-bottom: 40px;
-            letter-spacing: -3px;
-        }
-
-        .hero-viewport h1 span {
-            display: block;
-            background: linear-gradient(to right, #ffffff 20%, #71717a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 35px;
+            color: var(--text-main);
+            letter-spacing: -1px;
         }
 
         .hero-desc {
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 780px;
-            margin: 0 auto 60px;
-            line-height: 1.9;
+            max-width: 540px;
+            margin-bottom: 50px;
             font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
 
         .premium-btn {
-            padding: 22px 50px;
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 60px;
-            font-weight: 700;
+            padding: 20px 40px;
+            background: var(--accent);
+            color: #ffffff;
+            border: 1px solid var(--accent);
+            border-radius: 0;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
             text-decoration: none;
-            display: inline-block;
             transition: var(--transition-smooth);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .premium-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 102%;
-            height: 102%;
-            background: #fff;
-            transform: translate(-50%, -50%) scaleX(0);
-            transform-origin: right center;
-            z-index: -1;
-            transition: transform 0.6s var(--curve-premium);
+            display: inline-block;
         }
 
         .premium-btn:hover {
-            color: #000;
-            border-color: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(255,255,255,0.05);
-        }
-
-        .premium-btn:hover::before {
-            transform: translate(-50%, -50%) scaleX(1);
-            transform-origin: left center;
-        }
-
-        .text-center-btn {
-            width: 100%;
-            text-align: center;
-            background: var(--accent);
-            color: #000;
-            border: none;
-            font-weight: 800;
-        }
-
-        .text-center-btn:hover {
-            background: var(--accent-bright);
-            box-shadow: 0 20px 40px rgba(229,193,88,0.15);
-        }
-
-        .text-center-btn::before {
-            display: none;
-        }
-
-        /* ==========================================================================
-           4. SHOWCASE GRID & CREATORS AREA
-           ========================================================================== */
-        .about-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 140px;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .showcase-text .section-paragraph {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            line-height: 1.9;
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        .showcase-media {
-            position: relative;
-            height: 600px;
-            border-radius: 32px;
-            overflow: hidden;
-            box-shadow: var(--shadow-dark);
-            border: 1px solid rgba(255,255,255,0.02);
-        }
-
-        .showcase-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s var(--curve-premium);
-        }
-
-        .showcase-media:hover img {
-            transform: scale(1.05);
-        }
-
-        .video-play-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(2,2,4,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .play-trigger-btn {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .showcase-media:hover .play-trigger-btn {
-            transform: scale(1.12);
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            box-shadow: 0 0 50px rgba(229,193,88,0.3);
-        }
-
-        .creators-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .art-card {
-            background: var(--bg-card);
-            border-radius: 36px;
-            padding: 55px;
-            border: 1px solid rgba(255,255,255,0.01);
-            transition: var(--transition-smooth);
-        }
-
-        .art-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.04);
-            background: var(--bg-card-light);
-            box-shadow: var(--shadow-dark);
-        }
-
-        .art-card-frame {
-            width: 100%;
-            height: 420px;
-            border-radius: 24px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .art-card-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s var(--curve-premium);
-        }
-
-        .art-card:hover .art-card-frame img {
-            transform: scale(1.06);
-        }
-
-        .art-card h3 {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .role-badge {
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 4px;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 30px;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            font-weight: 300;
-            line-height: 1.8;
-        }
-
-        /* ==========================================================================
-           5. INTERACTIVE ENGINE CALCULATOR
-           ========================================================================== */
-        .calc-grid {
-            display: grid;
-            grid-template-columns: 7fr 5fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .calc-block-title {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            text-transform: uppercase;
-            margin-bottom: 35px;
-            letter-spacing: 2px;
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
-        }
-
-        .calc-group {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            margin-bottom: 60px;
-        }
-
-        .calc-card-option {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.02);
-            padding: 30px 35px;
-            border-radius: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .calc-card-option:hover {
-            background: var(--bg-card-light);
-            transform: translateX(4px);
-        }
-
-        .calc-card-option.is-selected {
-            border-color: var(--accent);
-            background: rgba(229, 193, 88, 0.03);
-            box-shadow: inset 0 0 30px rgba(229,193,88,0.01);
-        }
-
-        .opt-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-            transition: color 0.3s;
-        }
-
-        .calc-card-option.is-selected .opt-title {
-            color: var(--accent);
-        }
-
-        .opt-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .opt-price {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            color: var(--accent);
-            font-size: 1.4rem;
-            margin-left: 35px;
-            white-space: nowrap;
-        }
-
-        .calc-output-window {
-            background: var(--bg-card);
-            border-radius: 40px;
-            padding: 55px;
-            border: 1px solid rgba(255,255,255,0.02);
-            position: sticky;
-            top: 140px;
-            box-shadow: var(--shadow-dark);
-        }
-
-        .output-label {
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .total-price-display {
-            font-family: var(--font-serif);
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 40px;
-            letter-spacing: -1px;
-            line-height: 1;
-        }
-
-        .total-price-display span {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-left: 6px;
-        }
-
-        .calc-summary-list {
-            list-style: none;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 35px;
-            margin-bottom: 45px;
-        }
-
-        .calc-summary-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .calc-summary-item strong {
-            color: #fff;
-            font-family: var(--font-serif);
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body>
-
-    <canvas id="bg-canvas"></canvas>
-    <div class="vignette-overlay"></div>
-
-    <div class="ultra-preloader" id="preloader">
-        <div class="loader-context">
-            <div class="loader-title">VISUAL STORIES</div>
-            <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
-            <div class="loader-number" id="loader-number">0%</div>
-        </div>
-    </div>
-
-    <header id="main-header">
-        <a href="#" class="brand-logo">Visual<span>Stories</span></a>
-        <button class="menu-trigger" id="menu-btn" aria-label="Toggle Navigation">
-            <span></span>
-            <span></span>
-        </button>
-    </header>
-
-    <div class="fullscreen-menu" id="menu-overlay">
-        <ul class="menu-nav-list">
-            <li class="menu-nav-item"><a href="#" class="menu-nav-link" data-scroll-to="home"><span>01</span>Domov</a></li>
-            <li class="menu-nav-item"><a href="#about" class="menu-nav-link" data-scroll-to="about"><span>02</span>O Nás</a></li>
-            <li class="menu-nav-item"><a href="#cennik" class="menu-nav-link" data-scroll-to="cennik"><span>03</span>Cenník</a></li>
-            <li class="menu-nav-item"><a href="#portfolio" class="menu-nav-link" data-scroll-to="portfolio"><span>04</span>Portfólio</a></li>
-            <li class="menu-nav-item"><a href="#referencie" class="menu-nav-link" data-scroll-to="referencie"><span>05</span>Referencie</a></li>
-            <li class="menu-nav-item"><a href="#rezervacia" class="menu-nav-link" data-scroll-to="rezervacia"><span>06</span>Rezervácia</a></li>
-            <li class="menu-nav-item"><a href="#kontakt" class="menu-nav-link" data-scroll-to="kontakt"><span>07</span>Kontakt</a></li>
-        </ul>
-    </div>
-
-    <section class="hero-viewport" id="home">
-        <div class="hero-master-box">
-            <span class="hero-tagline">Cinematic Production Duo</span>
-            <h1><span>Zachytené</span><span>Umelecké Emócie</span></h1>
-            <p class="hero-desc">Spájame svetovú filmovú estetiku, precízny sound design a nadčasovú reportážnu fotografiu do jedného emóciami nabitého vizuálneho celku.</p>
-            <a href="#about" class="premium-btn" data-scroll-to="about">Spoznajte našu tvorbu</a>
-        </div>
-    </section>
-
-    <section class="container section-spacer" id="about">
-        <div class="about-layout">
-            <div class="showcase-grid">
-                <div class="showcase-text">
-                    <span class="meta-num">01 // FILMOVÁ ESTETIKA</span>
-                    <h2 class="section-title">Rozprávame vizuálne príbehy</h2>
-                    <p class="section-paragraph">Odmietame šablónovité postupy a lacné gýče. Naším cieľom je vytvoriť pre vás nadčasový umelecký kúsok, ktorý vám aj po desiatkach rokov verne pripomenie husiu kožu a zimomriavky.</p>
-                    <p class="section-paragraph">Využívame sofistikovanú stabilizáciu, špičkovú optiku s pevným ohniskom a pokročilú postprodukčnú prácu s farbami (color grading) prispôsobenú atmosfére lokality.</p>
-                </div>
-                <div class="showcase-media">
-                    <img data-src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" alt="Filmová technika v akcii">
-                    <div class="video-play-overlay">
-                        <button class="play-trigger-btn" id="open-video" aria-label="Prehrať showreel"><i class="fas fa-play"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="creators-grid">
-                <div class="art-card">
-                    <div class="art-card-frame">
-                        <img data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3C/svg%3E" alt="Peter - Hlavný kameraman">
-                    </div>
-                    <span class="role-badge">Director of Photography</span>
-                    <h3>Peter</h3>
-                    <p class="card-desc">Sústredím sa na kompozíciu svetla, dynamické zábery v pohybe a precízny strih na hudobný podmaz. Každý film beriem ako autorské umelecké dielo.</p>
-                </div>
-                <div class="art-card">
-                    <div class="art-card-frame">
-                        <img data-src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 4 5'%3E%3C/svg%3E" alt="Veronika - Hlavná fotografka">
-                    </div>
-                    <span class="role-badge">Lead Photographer</span>
-                    <h3>Veronika</h3>
-                    <p class="card-desc">Mojou doménou sú nestrážené úprimné pohľady, emócie a jemné detaily. Verím, že najkrajšia fotografia vznikne vtedy, keď ani neviete, že vás fotím.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container section-spacer" id="cennik">
-        <span class="meta-num">02 // INDIVIDUÁLNA KONFIGURÁCIA</span>
-        <h2 class="section-title">Transparentný cenník <span>Zostavte si balík presne podľa Vašich plánov.</span></h2>
-        <p class="section-desc">Vyberte si jeden hlavný pilier našej produkcie, ktorý následne môžete doplniť o exkluzívne doplnkové moduly.</p>
-
-        <div class="calc-grid">
-            <div class="calc-inputs">
-                <h3 class="calc-block-title">1. Primárna služba</h3>
-                <div class="calc-group">
-                    <div class="calc-card-option is-selected" data-type="main" data-price="950">
-                        <div>
-                            <span class="opt-title">Svadobná Produkcia Premium</span>
-                            <span class="opt-desc">Kompletné prémiové pokrytie (Foto + Video) od ranných príprav až do 01:00 ráno.</span>
-                        </div>
-                        <div class="opt-price">950€</div>
-                    </div>
-                    <div class="calc-card-option" data-type="main" data-price="750">
-                        <div>
-                            <span class="opt-title">Stužková Slávnosť Exclusive</span>
-                            <span class="opt-desc">Záznam oficiálnej časti, ceremónia, klip, kompletná reportážna galéria pre celú triedu.</span>
-                        </div>
-                        <div class="opt-price">750€</div>
-                    </div>
-                </div>
-
-                <h3 class="calc-block-title">2. Voliteľné moduly</h3>
-                <div class="calc-group">
-                    <div class="calc-card-option" data-type="addon" data-price="180">
-                        <div>
-                            <span class="opt-title">Letecké 4K zábery z dronu</span>
-                            <span class="opt-desc">Zakomponovanie majestátnych záberov z vtáčej perspektívy licencovaným dronom.</span>
-                        </div>
-                        <div class="opt-price">+180€</div>
-                    </div>
-                    <div class="calc-card-option" data-type="addon" data-price="250">
-                        <div>
-                            <span class="opt-title">Expresný Postproces do 7 dní</span>
-                            <span class="opt-desc">Uprednostnenie materiálov v editačnom systéme a garantované odovzdanie celej zákazky.</span>
-                        </div>
-                        <div class="opt-price">+250€</div>
-                    </div>
-                    <div class="calc-card-option" data-type="addon" data-price="120">
-                        <div>
-                            <span class="opt-title">Umelecká tlačená fotokniha</span>
-                            <span class="opt-desc">Luxusný kožený obal, jemný štruktúrovaný papier a autorské rozloženie dvojstrán.</span>
-                        </div>
-                        <div class="opt-price">+120€</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="calc-output-window">
-                <span class="output-label">Predbežný rozpočet</span>
-                <div class="total-price-display" id="total-price-val">950<span>€</span></div>
-                <ul class="calc-summary-list" id="summary-items-zone"></ul>
-                <a href="#rezervacia" class="premium-btn text-center-btn" data-scroll-to="rezervacia">Prejsť k dopytu</a>
-            </div>
-        </div>
-    </section>
-    <style>
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .portfolio-item {
-            background: var(--bg-card);
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.01);
-            transition: var(--transition-smooth);
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255,255,255,0.04);
-            box-shadow: var(--shadow-dark);
-        }
-
-        .portfolio-img-box {
-            height: 320px;
-            overflow: hidden;
-            position: relative;
-            background: #050508;
-        }
-
-        .portfolio-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: transform 0.8s var(--curve-premium), opacity 0.6s ease;
-        }
-
-        .portfolio-img-box img.is-loaded {
-            opacity: 1;
-        }
-
-        .portfolio-item:hover .portfolio-img-box img {
-            transform: scale(1.05);
-        }
-
-        .portfolio-meta-box {
-            padding: 40px;
-        }
-
-        .portfolio-meta-box h3 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .portfolio-text {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .review-card {
-            background: var(--bg-card);
-            border-radius: 32px;
-            padding: 50px;
-            border: 1px solid rgba(255,255,255,0.01);
-            position: relative;
-            transition: var(--transition-smooth);
-        }
-
-        .review-card:hover {
-            border-color: rgba(255,255,255,0.03);
-            background: var(--bg-card-light);
-        }
-
-        .review-icon {
-            font-size: 3.5rem;
-            color: rgba(229,193,88,0.05);
-            position: absolute;
-            top: 40px;
-            right: 50px;
-        }
-
-        .review-text {
-            font-size: 1.2rem;
-            color: var(--text-main);
-            font-style: italic;
-            margin-bottom: 40px;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        .review-author {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #09090e;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .author-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .author-avatar img.is-loaded {
-            opacity: 1;
-        }
-
-        .author-info h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            letter-spacing: 0.3px;
-        }
-
-        .author-info span {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 90px;
-        }
-
-        .font-bottom-space {
-            margin-bottom: 45px;
-        }
-
-        .live-package-display {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.01);
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.3);
-        }
-
-        .font-bottom-mini {
-            margin-bottom: 10px;
-        }
-
-        #form-selected-package {
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            letter-spacing: 0.3px;
-            line-height: 1.5;
-        }
-
-        #form-selected-price {
-            font-size: 1.6rem;
-            font-weight: 800;
-            font-family: var(--font-serif);
-            color: #fff;
-        }
-
-        .field-box {
-            position: relative;
-            margin-bottom: 50px;
-        }
-
-        .field-input {
-            width: 100%;
             background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding: 20px 0;
-            color: #fff;
-            font-size: 1.15rem;
-            font-family: var(--font-sans);
-            transition: border-color 0.4s var(--curve-premium);
-        }
-
-        .field-input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .field-label {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            color: var(--text-dark);
-            pointer-events: none;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: all 0.4s var(--curve-premium);
-        }
-
-        .field-input:focus ~ .field-label, 
-        .field-input:valid ~ .field-label {
-            top: -24px;
-            font-size: 0.75rem;
             color: var(--accent);
-            letter-spacing: 2.5px;
-        }
-
-        .submit-btn {
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: #fff;
-            padding: 24px 50px;
-            border-radius: 60px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            width: 100%;
-            text-align: center;
-        }
-
-        .submit-btn:hover {
-            background: var(--accent);
-            color: #000;
-            box-shadow: 0 20px 40px rgba(229,193,88,0.2);
             transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
         }
 
-        .info-link {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            text-decoration: none;
-            color: var(--text-main);
-            margin-bottom: 40px;
-            transition: var(--transition-smooth);
-        }
-
-        .info-link:hover {
-            transform: translateX(6px);
-        }
-
-        .info-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.02);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--accent);
-            font-size: 1.2rem;
-            transition: var(--transition-smooth);
-        }
-
-        .info-link:hover .info-icon {
-            background: var(--accent);
-            color: #000;
-            box-shadow: 0 0 30px rgba(229,193,88,0.25);
-        }
-
-        .info-text span {
-            display: block;
+        .secondary-btn {
             font-size: 0.8rem;
-            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 3px;
-        }
-
-        .info-text p {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .status-card-box {
-            background: var(--bg-card);
-            padding: 50px;
-            border-radius: 32px;
-            border: 1px solid rgba(255,255,255,0.01);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .status-card-box h4 {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .status-card-box p {
-            color: var(--text-muted);
-            font-weight: 300;
-            margin-bottom: 35px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            color: #4ade80;
             font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            background: #4ade80;
-            border-radius: 50%;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 20px 0;
             display: inline-block;
-            box-shadow: 0 0 20px #4ade80;
-            animation: pulseGlow 2.5s infinite ease-in-out;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.25); }
-        }
-
-        /* Video Modal Window Overlay */
-        .video-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(1,1,2,0.97);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.6s var(--curve-premium);
-        }
-
-        .video-modal.is-active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-container {
-            width: 85%;
-            max-width: 1200px;
-            aspect-ratio: 16/9;
-            position: relative;
-            transform: scale(0.92);
-            transition: transform 0.6s var(--curve-premium);
-        }
-
-        .video-modal.is-active .modal-container {
-            transform: scale(1);
-        }
-
-        .modal-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
-            font-family: var(--font-sans);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
             transition: color 0.3s;
         }
 
-        .modal-close:hover {
-            color: var(--accent);
+        .secondary-btn:hover {
+            color: var(--accent-gold);
         }
 
+        .hero-media-wrapper {
+            position: relative;
+            height: 65vh;
+            background: var(--bg-soft);
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-media-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--curve-premium);
+        }
+
+        .hero-media-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        /* ==========================================================================
+           4. FEATURED STATEMENT / INTRODUCTION
+           ========================================================================== */
+        .statement-box {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .statement-box h2 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            color: var(--text-main);
+        }
+
+        .statement-box h2 strong {
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        /* Footer Basic Layout */
         footer {
-            padding: 80px 0;
-            border-top: 1px solid rgba(255,255,255,0.02);
-            background: #020204;
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-soft);
             position: relative;
             z-index: 5;
         }
@@ -1294,230 +391,167 @@
             align-items: center;
         }
 
-        .copyright-zone {
-            color: var(--text-dark);
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .social-cluster {
-            display: flex;
-            gap: 30px;
-        }
-
-        .social-cluster a {
+        .copyright {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            font-size: 1.4rem;
-            transition: var(--transition-smooth);
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.01);
-            border-radius: 50%;
+        }
+
+        .socials {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.005);
+            gap: 25px;
         }
 
-        .social-cluster a:hover {
-            color: var(--accent);
-            background: rgba(255,255,255,0.03);
-            border-color: rgba(229,193,88,0.15);
-            transform: translateY(-4px);
+        .socials a {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            transition: color 0.3s;
         }
 
-        /* Responsive Layout Engineering Breakpoints */
-        @media (max-width: 1280px) {
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .hero-viewport h1 { font-size: 5.5rem; }
-            .section-title { font-size: 3.5rem; }
+        .socials a:hover {
+            color: var(--accent-gold);
         }
-        
+
+        /* Basic Mobile Layout Fixes */
         @media (max-width: 1024px) {
-            .showcase-grid, .creators-grid, .calc-grid, .reviews-grid, .contact-grid { grid-template-columns: 1fr; gap: 60px; }
-            .calc-output-window { position: static; margin-top: 30px; }
-            .portfolio-grid { grid-template-columns: 1fr; max-width: 650px; margin: 0 auto; }
-            .footer-flex { flex-direction: column; gap: 40px; text-align: center; }
-            header { padding: 30px 40px; }
-            header.scentered { padding: 15px 40px; }
-            .container { padding: 0 40px; }
-            .section-spacer { padding: 130px 0; }
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-desc { margin: 0 auto 40px; }
+            .action-group { justify-content: center; }
+            .hero-media-wrapper { height: 45vh; }
+            .main-nav-desktop { display: none; }
+            .menu-trigger { display: flex; }
+            .container { padding: 0 30px; }
+            header { padding: 25px 30px; }
         }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="ultra-preloader" id="preloader">
+        <div class="loader-context">
+            <div class="loader-title">VISUAL STORIES</div>
+            <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header id="main-header">
+        <a href="index.html" class="brand-logo">Visual<span>Stories</span></a>
         
-        @media (max-width: 768px) {
-            .hero-viewport h1 { font-size: 3.8rem; }
-            .section-title { font-size: 2.6rem; }
-            .menu-nav-link { font-size: 2.8rem; }
-            .showcase-media { height: 440px; }
-            .art-card-frame { height: 320px; }
-            .art-card { padding: 35px; }
+        <ul class="main-nav-desktop">
+            <li><a href="index.html" class="nav-link active">Domov</a></li>
+            <li><a href="o-nas.html" class="nav-link">O Nás</a></li>
+            <li><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+            <li><a href="cennik.html" class="nav-link">Cenník</a></li>
+            <li><a href="referencie.html" class="nav-link">Referencie</a></li>
+            <li><a href="kontakt.html" class="nav-link">Kontakt</a></li>
+        </ul>
+
+        <button class="menu-trigger" id="menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <section class="hero-viewport">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text-block">
+                    <span class="hero-tagline">Cinematic Production Studio</span>
+                    <h1>Zachytené<br>Umelecké Emócie</h1>
+                    <p class="hero-desc">Spájame svetovú filmovú estetiku, precízny sound design a nadčasovú reportážnu fotografiu do jedného čistého vizuálneho celku.</p>
+                    <div class="action-group">
+                        <a href="portfolio.html" class="premium-btn">Pozrieť tvorbu</a>
+                        <a href="kontakt.html" class="secondary-btn">Dohodnúť termín &rarr;</a>
+                    </div>
+                </div>
+                <div class="hero-media-wrapper">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200" alt="Cinematic Production Main">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container section-spacer">
+        <div class="statement-box">
+            <h2>Sme presvedčení, že tie najlepšie príbehy sa píšu samé. Našou úlohou je iba byť v správny čas na správnom mieste a zachytiť ich s <strong>maximálnou eleganciou</strong>.</h2>
+        </div>
+    </section>
+    <style>
+        /* Mobile Navigation Overlay styling inside the core framework */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 998;
+            display: flex;
+            align-items: center;
+            padding: 0 45px;
+            transform: translateY(-100%);
+            transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-overlay.is-active {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            width: 100%;
+        }
+
+        .mobile-nav-item {
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .mobile-nav-link {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: transform 0.4s var(--curve-premium), color 0.3s;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--accent-gold);
+            transform: translateX(15px);
+        }
+
+        .mobile-nav-link span {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--text-ultra-muted);
+            margin-right: 20px;
+            font-weight: 600;
         }
     </style>
 
-    <section class="container section-spacer" id="portfolio">
-        <span class="meta-num">03 // VIZUÁLNE PORTFÓLIO</span>
-        <h2 class="section-title">Vybrané Autorské Diela</h2>
-        <p class="section-desc">Nahliadnite do našich najnovších projektov. Každý príbeh spracovávame s dôrazom na unikátnu atmosféru daného miesta a ľudí.</p>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img data-src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3C/svg%3E" alt="Svadobný príbeh">
-                </div>
-                <div class="portfolio-meta-box">
-                    <span class="meta-num">// CINEMATIC WEDDING</span>
-                    <h3>Viktória & Jakub</h3>
-                    <p class="portfolio-text">Sofistikovaná minimalistická svadba v historickom prostredí zámku, doplnená o kontrastnú dynamickú večernú oslavu.</p>
-                </div>
-            </div>
-            
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img data-src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3C/svg%3E" alt="Gala stužková">
-                </div>
-                <div class="portfolio-meta-box">
-                    <span class="meta-num">// HIGH SCHOOL GALA</span>
-                    <h3>Gymnázium IV.B</h3>
-                    <p class="portfolio-text">Energický strih, silné emócie počas ceremónie a hudobný videoklip zachytávajúci čistú radosť mladej generácie.</p>
-                </div>
-            </div>
-            
-            <div class="portfolio-item">
-                <div class="portfolio-img-box">
-                    <img data-src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3C/svg%3E" alt="Umelecký projekt">
-                </div>
-                <div class="portfolio-meta-box">
-                    <span class="meta-num">// URBAN EDITORIAL</span>
-                    <h3>Neon Nocturne</h3>
-                    <p class="portfolio-text">Nočný umelecký experimentálny projekt využívajúci chromatické odlesky veľkomesta, externý dym a atmosférické podsvietenie.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container section-spacer" id="referencie">
-        <span class="meta-num">04 // AUTENTICKÉ SPÄTNÉ VÄZBY</span>
-        <h2 class="section-title">Názory Našich Klientov</h2>
-        <p class="section-desc">Prečítajte si hodnotenia od ľudí, ktorí nám zverili plnú dôveru pri dokumentovaní ich najdôležitejších chvíľ v živote.</p>
-
-        <div class="reviews-grid">
-            <div class="review-card">
-                <i class="fas fa-quote-right review-icon"></i>
-                <p class="review-text">"Veronika a Peter sú neskutoční profesionáli. Počas celého dňa sme ich prítomnosť takmer nevnímali, no keď sme videli hotový film a fotky, plakali sme od šťastia. Zachytili každý dôležitý moment."</p>
-                <div class="review-author">
-                    <div class="author-avatar">
-                        <img data-src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Klientská referencia">
-                    </div>
-                    <div class="author-info">
-                        <h4>Simona & Tomáš</h4>
-                        <span>Svadba, Kaštieľ Belá</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="review-card">
-                <i class="fas fa-quote-right review-icon"></i>
-                <p class="review-text">"Zabezpečiť VisualStories pre našu stužkovú bolo najlepšie rozhodnutie. Klip mal obrovský úspech u študentov aj rodičov na sociálnych sieťach. Moderný prístup, skvelá komunikácia a bezkonkurenčná kvalita."</p>
-                <div class="review-author">
-                    <div class="author-avatar">
-                        <img data-src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Študentská referencia">
-                    </div>
-                    <div class="author-info">
-                        <h4>Marek H. (Zástupca triedy)</h4>
-                        <span>Stužková, Hotel Hilton</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container section-spacer" id="rezervacia">
-        <div class="contact-grid">
-            <div>
-                <span class="meta-num">05 // PLNE SYNCHRONIZOVANÝ SYSTÉM</span>
-                <h2 class="section-title">Nezáväzný Dopyt</h2>
-                <p class="section-desc font-bottom-space">Vyplňte základné údaje pre overenie dostupnosti termínu. Vaša navolená zostava z inteligentného cenníka vyššie je prepojená s týmto formulárom.</p>
-                <div class="live-package-display">
-                    <span class="output-label font-bottom-mini">Aktuálna špecifikácia dopytu:</span>
-                    <div id="form-selected-package">Svadobná Produkcia Premium</div>
-                    <div id="form-selected-price">Cena: 950€</div>
-                </div>
-            </div>
-            <div>
-                <form id="reservation-form" autocomplete="off">
-                    <div class="field-box">
-                        <input type="text" id="form-name" class="field-input" required>
-                        <label class="field-label">Meno a Priezvisko / Názov školy</label>
-                    </div>
-                    <div class="field-box">
-                        <input type="email" id="form-email" class="field-input" required>
-                        <label class="field-label">Kontaktná E-mailová Adresa</label>
-                    </div>
-                    <div class="field-box">
-                        <input type="text" id="form-details" class="field-input" required>
-                        <label class="field-label">Plánovaný termín a miesto udalosti</label>
-                    </div>
-                    <button class="submit-btn" type="submit">Odoslať Rezervačnú Žiadosť</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="container section-spacer" id="kontakt">
-        <span class="meta-num">06 // KONTTAKTNÉ CENTRUM</span>
-        <h2 class="section-title">Dohodnime Si Konzultáciu</h2>
-        <p class="section-desc">Máte neštandardné predstavy alebo špecifický projekt? Radi s vami prejdeme možnosti osobne pri dobrej káve alebo formou online hovoru.</p>
-        
-        <div class="contact-grid">
-            <div>
-                <a href="mailto:info@visualstories.sk" class="info-link">
-                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                    <div class="info-text">
-                        <span>Elektronická pošta</span>
-                        <p>info@visualstories.sk</p>
-                    </div>
-                </a>
-                <a href="tel:+421900123456" class="info-link">
-                    <div class="info-icon"><i class="fas fa-phone"></i></div>
-                    <div class="info-text">
-                        <span>Telefonický kontakt</span>
-                        <p>+421 900 123 456</p>
-                    </div>
-                </a>
-                <div class="info-link">
-                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="info-text">
-                        <span>Pôsobiská produkcie</span>
-                        <p>Slovenská republika / Stredná Európa</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="status-card-box">
-                <h4>Aktuálny stav kapacít</h4>
-                <p>Z dôvodu zachovania najvyššej možnej kvality, detailného strihu a individuálneho prístupu prijímame iba obmedzený počet exkluzívnych zákaziek ročne.</p>
-                <div class="status-indicator">
-                    <span class="status-dot"></span> Prijímame rezervácie na sezónu 2026 / 2027
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="video-modal" id="video-modal-view">
-        <div class="modal-container">
-            <button class="modal-close" id="close-video"><i class="fas fa-times"></i> Zatvoriť Showreel</button>
-            <iframe id="modal-iframe" src="" allow="autoplay; fullscreen"></iframe>
-        </div>
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link"><span>01</span>Domov</a></li>
+            <li class="mobile-nav-item"><a href="o-nas.html" class="mobile-nav-link"><span>02</span>O Nás</a></li>
+            <li class="mobile-nav-item"><a href="portfolio.html" class="mobile-nav-link"><span>03</span>Portfólio</a></li>
+            <li class="mobile-nav-item"><a href="cennik.html" class="mobile-nav-link"><span>04</span>Cenník</a></li>
+            <li class="mobile-nav-item"><a href="referencie.html" class="mobile-nav-link"><span>05</span>Referencie</a></li>
+            <li class="mobile-nav-item"><a href="kontakt.html" class="mobile-nav-link"><span>06</span>Kontakt</a></li>
+        </ul>
     </div>
 
     <footer>
         <div class="container footer-flex">
-            <div class="copyright-zone">&copy; 2026 VisualStories Cinema. Všetky autorské práva vyhradené.</div>
-            <div class="social-cluster">
-                <a href="#" aria-label="Instagram Profil"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Vimeo Kanál"><i class="fab fa-vimeo-v"></i></a>
-                <a href="#" aria-label="Facebook Stránka"><i class="fab fa-facebook-f"></i></a>
+            <div class="copyright">&copy; 2026 VisualStories Cinema. Všetky práva vyhradené.</div>
+            <div class="socials">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Vimeo"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
         </div>
     </footer>
@@ -1525,319 +559,198 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         /**
-         * GLOBAL APP ENGINE CONTROLLER
-         * Inicializácia a orchestrácia klientskych subsystémov.
+         * APPLICATION MASTER CONTROLLER
+         * Centralizovaný orchester riadenia klientskych komponentov.
          */
-        document.addEventListener('DOMContentLoaded', () => {
-            AppPreloader.init();
-            AppParticles.init();
-            AppHeaderSystem.init();
-            AppSmoothScroll.init();
-            AppCalculator.init();
-            AppLazyLoader.init();
-            AppVideoModal.init();
-            AppFormHandler.init();
-        });
+        class ApplicationCore {
+            constructor() {
+                this.modules = {};
+            }
+
+            registerModule(name, instance) {
+                this.modules[name] = instance;
+                return this;
+            }
+
+            initAll() {
+                Object.keys(this.modules).forEach(key => {
+                    try {
+                        this.modules[key].init(this);
+                    } catch (error) {
+                        console.error(`[App Core Error] Inicializácia modulu "${key}" zlyhala:`, error);
+                    }
+                });
+            }
+        }
 
         /**
-         * SUBSYSTÉM 1: Ultra Preloader s asynchrónnym odpočítavaním
+         * MODUL A: Asynchrónny Preloader s plynulým prechodom (Light FX)
          */
-        const AppPreloader = {
-            init() {
+        const PreloaderModule = {
+            init(core) {
                 const bar = document.getElementById('loader-bar');
-                const num = document.getElementById('loader-number');
                 const preloader = document.getElementById('preloader');
-                let currentProgress = 0;
+                let progress = 0;
 
-                const progressTimer = setInterval(() => {
-                    currentProgress += Math.floor(Math.random() * 10) + 5;
+                const timer = setInterval(() => {
+                    progress += Math.floor(Math.random() * 15) + 5;
                     
-                    if (currentProgress >= 100) {
-                        currentProgress = 100;
-                        clearInterval(progressTimer);
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(timer);
                         
                         gsap.to(preloader, {
-                            yPercent: -100,
-                            duration: 1.4,
-                            ease: 'power4.inOut',
+                            opacity: 0,
+                            duration: 0.8,
+                            ease: 'power2.out',
                             onComplete: () => {
                                 preloader.style.display = 'none';
+                                // Spustenie animácií po načítaní
+                                core.modules['AnimationEngine'].triggerHeroAnimations();
                             }
                         });
                     }
                     
-                    bar.style.width = currentProgress + '%';
-                    num.innerText = currentProgress + '%';
-                }, 35);
+                    bar.style.width = progress + '%';
+                }, 30);
             }
         };
 
         /**
-         * SUBSYSTÉM 2: Pokročilý interaktívny Canvas časticový akcelerátor
+         * MODUL B: Komplexný matematický časticový systém pre svetlé pozadie
          */
-        const AppParticles = {
+        const CanvasParticleSystem = {
             init() {
                 const canvas = document.getElementById('bg-canvas');
+                if (!canvas) return;
+
                 const ctx = canvas.getContext('2d');
-                let width = canvas.width = window.innerWidth;
-                let height = canvas.height = window.innerHeight;
-                const particles = [];
+                let w = canvas.width = window.innerWidth;
+                let h = canvas.height = window.innerHeight;
+                const activeParticles = [];
 
                 window.addEventListener('resize', () => {
-                    width = canvas.width = window.innerWidth;
-                    height = canvas.height = window.innerHeight;
+                    w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight;
                 });
 
-                class MathematicalParticle {
+                class ElegantParticle {
                     constructor() {
-                        this.reset();
+                        this.spawn();
                     }
-                    reset() {
-                        this.x = Math.random() * width;
-                        this.y = Math.random() * height;
-                        this.size = Math.random() * 1.5 + 0.3;
-                        this.speedX = Math.random() * 0.14 - 0.07;
-                        this.speedY = Math.random() * 0.14 - 0.07;
-                        this.opacity = Math.random() * 0.3 + 0.05;
+                    spawn() {
+                        this.x = Math.random() * w;
+                        this.y = Math.random() * h;
+                        this.radius = Math.random() * 2 + 0.5;
+                        this.vx = Math.random() * 0.1 - 0.05;
+                        this.vy = Math.random() * 0.1 - 0.05;
+                        this.alpha = Math.random() * 0.15 + 0.05;
                     }
                     update() {
-                        this.x += this.speedX;
-                        this.y += this.speedY;
-                        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                            this.reset();
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) {
+                            this.spawn();
                         }
                     }
                     draw() {
-                        ctx.fillStyle = `rgba(229, 193, 88, ${this.opacity})`;
+                        ctx.fillStyle = `rgba(197, 168, 92, ${this.alpha})`; // Elegantná zlatá
                         ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                         ctx.fill();
                     }
                 }
 
-                for (let i = 0; i < 80; i++) {
-                    particles.push(new MathematicalParticle());
+                for (let i = 0; i < 40; i++) {
+                    activeParticles.push(new ElegantParticle());
                 }
 
-                function loop() {
-                    ctx.clearRect(0, 0, width, height);
-                    particles.forEach(p => {
+                function renderLoop() {
+                    ctx.clearRect(0, 0, w, h);
+                    activeParticles.forEach(p => {
                         p.update();
                         p.draw();
                     });
-                    requestAnimationFrame(loop);
+                    requestAnimationFrame(renderLoop);
                 }
-                loop();
+                renderLoop();
             }
         };
 
         /**
-         * SUBSYSTÉM 3: Header transformácie, fixácia a detekcia scrollu
+         * MODUL C: Responzívny Multipage Header & Mobilné rozhranie
          */
-        const AppHeaderSystem = {
+        const HeaderNavigationModule = {
             init() {
                 const header = document.getElementById('main-header');
-                const trigger = document.getElementById('menu-btn');
-                const overlay = document.getElementById('menu-overlay');
+                const menuBtn = document.getElementById('menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
 
+                // Detekcia posunu pre transformáciu hlavičky
                 window.addEventListener('scroll', () => {
-                    if (window.scrollY > 60) {
-                        header.classList.add('scentered');
+                    if (window.scrollY > 40) {
+                        header.classList.add('scrolled');
                     } else {
-                        header.classList.remove('scentered');
+                        header.classList.remove('scrolled');
                     }
                 });
 
-                trigger.addEventListener('click', () => {
-                    overlay.classList.toggle('is-open');
-                    if (overlay.classList.contains('is-open')) {
-                        trigger.children[0].style.transform = 'rotate(45deg) translate(8px, 7px)';
-                        trigger.children[1].style.transform = 'rotate(-45deg) translate(8px, -7px)';
-                    } else {
-                        trigger.children[0].style.transform = 'none';
-                        trigger.children[1].style.transform = 'none';
-                    }
-                });
-
-                document.querySelectorAll('.menu-nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        overlay.classList.remove('is-open');
-                        trigger.children[0].style.transform = 'none';
-                        trigger.children[1].style.transform = 'none';
-                    });
-                });
-            }
-        };
-
-        /**
-         * SUBSYSTÉM 4: Vlastný kinematický Smooth Scroll Engine s lineárnou interpoláciou
-         */
-        const AppSmoothScroll = {
-            init() {
-                const scrollElements = document.querySelectorAll('[data-scroll-to]');
-                
-                scrollElements.forEach(el => {
-                    el.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = el.getAttribute('data-scroll-to') || el.getAttribute('href').substring(1);
-                        const targetNode = document.getElementById(targetId);
+                // Riadenie mobilného menu
+                if (menuBtn && mobileMenu) {
+                    menuBtn.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('is-active');
+                        const spans = menuBtn.querySelectorAll('span');
                         
-                        if (targetNode) {
-                            const offsetTop = targetNode.getBoundingClientRect().top + window.scrollY - 100;
-                            window.scrollTo({
-                                top: offsetTop,
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                });
-            }
-        };
-
-        /**
-         * SUBSYSTÉM 5: Reaktívna cenníková kalkulačka a synchrónny data bridge
-         */
-        const AppCalculator = {
-            init() {
-                const options = document.querySelectorAll('.calc-card-option');
-                const totalDisplay = document.getElementById('total-price-val');
-                const summaryZone = document.getElementById('summary-items-zone');
-                const formPackageText = document.getElementById('form-selected-package');
-                const formPriceText = document.getElementById('form-selected-price');
-
-                function render() {
-                    let totalCost = 0;
-                    let primaryTitle = "";
-                    let featuresArr = [];
-                    summaryZone.innerHTML = '';
-
-                    options.forEach(opt => {
-                        if (opt.classList.contains('is-selected')) {
-                            const cost = parseInt(opt.getAttribute('data-price'), 10);
-                            const title = opt.querySelector('.opt-title').innerText;
-                            totalCost += cost;
-
-                            if (opt.getAttribute('data-type') === 'main') {
-                                primaryTitle = title;
-                            } else {
-                                featuresArr.push(title);
-                            }
-
-                            const li = document.createElement('li');
-                            li.classList.add('calc-summary-item');
-                            li.innerHTML = `<span>${title}</span><strong>${cost}€</strong>`;
-                            summaryZone.appendChild(li);
-                        }
-                    });
-
-                    totalDisplay.innerHTML = `${totalCost}<span>€</span>`;
-                    const totalAddonsStr = featuresArr.length > 0 ? ` (+ ${featuresArr.join(', ')})` : "";
-                    
-                    formPackageText.innerText = `${primaryTitle}${totalAddonsStr}`;
-                    formPriceText.innerText = `Cena: ${totalCost}€`;
-                }
-
-                options.forEach(opt => {
-                    opt.addEventListener('click', () => {
-                        if (opt.getAttribute('data-type') === 'main') {
-                            document.querySelectorAll('.calc-card-option[data-type="main"]').forEach(el => el.classList.remove('is-selected'));
-                            opt.classList.add('is-selected');
+                        if (mobileMenu.classList.contains('is-active')) {
+                            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                            spans[1].style.transform = 'rotate(-45deg) translate(4px, -5px)';
                         } else {
-                            opt.classList.toggle('is-selected');
+                            spans[0].style.transform = 'none';
+                            spans[1].style.transform = 'none';
                         }
-                        render();
                     });
-                });
-
-                render();
+                }
             }
         };
 
         /**
-         * SUBSYSTÉM 6: Výkonný asynchrónny Intersection Observer Lazy Loader
+         * MODUL D: Pokročilé úvodné animácie (GSAP Engine Integration)
          */
-        const AppLazyLoader = {
+        const AnimationEngine = {
             init() {
-                const images = document.querySelectorAll('img[data-src]');
+                // Skrytie prvkov pred animáciou
+                gsap.set('.hero-text-block > *', { opacity: 0, y: 30 });
+                gsap.set('.hero-media-wrapper', { opacity: 0, scale: 0.96 });
+            },
+            triggerHeroAnimations() {
+                const tl = gsap.timeline();
                 
-                const imgObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (!entry.isIntersecting) return;
-                        
-                        const img = entry.target;
-                        img.setAttribute('src', img.getAttribute('data-src'));
-                        img.addEventListener('load', () => {
-                            img.classList.add('is-loaded');
-                        });
-                        
-                        observer.unobserve(img);
-                    });
-                }, {
-                    threshold: 0.05,
-                    rootMargin: "0px 0px 200px 0px"
-                });
-
-                images.forEach(image => imgObserver.observe(image));
+                tl.to('.hero-text-block > *', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: 'power3.out'
+                })
+                .to('.hero-media-wrapper', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.4,
+                    ease: 'power4.out'
+                }, '-=0.8');
             }
         };
 
         /**
-         * SUBSYSTÉM 7: Video Modal Core pre Vimeo API integrácie
+         * INICIALIZÁCIA SYSTÉMU
          */
-        const AppVideoModal = {
-            init() {
-                const openBtn = document.getElementById('open-video');
-                const closeBtn = document.getElementById('close-video');
-                const modal = document.getElementById('video-modal-view');
-                const iframe = document.getElementById('modal-iframe');
-                const vimeoStreamUrl = "https://player.vimeo.com/video/347119290?autoplay=1&color=e5c158&byline=0&portrait=0";
-
-                openBtn.addEventListener('click', () => {
-                    iframe.setAttribute('src', vimeoStreamUrl);
-                    modal.classList.add('is-active');
-                });
-
-                const terminateModal = () => {
-                    iframe.setAttribute('src', '');
-                    modal.classList.remove('is-active');
-                };
-
-                closeBtn.addEventListener('click', terminateModal);
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) terminateModal();
-                });
-            }
-        };
-
-        /**
-         * SUBSYSTÉM 8: Bezpečný asynchrónny Form Handler
-         */
-        const AppFormHandler = {
-            init() {
-                const form = document.getElementById('reservation-form');
-                
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    const name = document.getElementById('form-name').value;
-                    const email = document.getElementById('form-email').value;
-                    const details = document.getElementById('form-details').value;
-                    const selection = document.getElementById('form-selected-package').innerText;
-                    const price = document.getElementById('form-selected-price').innerText;
-
-                    console.log('--- EXCLUSIVE PRODUCTION INBOUND REQUEST ---');
-                    console.log('Klient:', name);
-                    console.log('E-mail:', email);
-                    console.log('Detaily projektu:', details);
-                    console.log('Zvolená zostava:', selection);
-                    console.log('Cenová kalkulácia:', price);
-                    console.log('--------------------------------------------');
-
-                    alert(`Ďakujeme, ${name}! Vaša nezáväzná konfigurácia bola bezpečne uložená do databázy. Odpovieme vám najneskôr do 24 hodín.`);
-                    form.reset();
-                });
-            }
-        };
+        const app = new ApplicationCore();
+        app.registerModule('Preloader', PreloaderModule);
+        app.registerModule('Particles', CanvasParticleSystem);
+        app.registerModule('Navigation', HeaderNavigationModule);
+        app.registerModule('AnimationEngine', AnimationEngine);
+        
+        document.addEventListener('DOMContentLoaded', () => app.initAll());
     </script>
 </body>
 </html>
