@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisualStories | Premium Cinematic Photo & Video</title>
+    <title>VisualStories | Premium Cinematic Tvorba</title>
     
+    <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ==========================================================================
-           1. RESET & CORE VARIABLES
-           ========================================================================== */
-        *, *::before, *::after {
+        /* --- CORE CONFIG --- */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -23,112 +21,33 @@
         }
 
         :root {
-            --bg-dark: #050507;
-            --bg-card: #0d0d11;
-            --accent: #d4af37;
-            --accent-rgb: 212, 175, 55;
-            --text-main: #f5f5f7;
-            --text-muted: #86868b;
-            --font-sans: 'Plus Jakarta Sans', sans-serif;
-            --font-serif: 'Cinzel', serif;
-            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg-dark: #07070a;
+            --bg-card: #0f0f14;
+            --accent: #e5c158;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
         }
 
-        html, body {
+        body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: var(--font-sans);
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             letter-spacing: -0.01em;
         }
 
-        /* Skrytie defaultného kurzora pre custom WebGL/JS efekt */
-        body, a, button {
-            cursor: none !important;
-        }
-
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
             background: var(--bg-dark);
         }
         ::-webkit-scrollbar-thumb {
             background: #222;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
+            border-radius: 3px;
         }
 
-        /* ==========================================================================
-           2. CUSTOM CINEMATIC CURSOR
-           ========================================================================== */
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 99999;
-            mix-blend-mode: difference;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-
-        .custom-cursor-follower {
-            width: 50px;
-            height: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 99998;
-            transition: transform 0.08s linear, width 0.3s, height 0.3s, border-color 0.3s;
-        }
-
-        body.hovering .custom-cursor {
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            mix-blend-mode: normal;
-        }
-
-        body.hovering .custom-cursor-follower {
-            width: 80px;
-            height: 80px;
-            border-color: var(--accent);
-        }
-
-        /* ==========================================================================
-           3. BACKGROUND LIQUID AMBIENT (AURORA)
-           ========================================================================== */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            pointer-events: none;
-            overflow: hidden;
-            filter: blur(120px);
-            opacity: 0.4;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            mix-blend-mode: screen;
-            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.3) 0%, rgba(0,0,0,0) 70%);
-        }
-
-        /* ==========================================================================
-           4. PRELOADER & INTRO ANIMATION
-           ========================================================================== */
+        /* --- PRELOADER --- */
         .preloader {
             position: fixed;
             top: 0;
@@ -136,66 +55,41 @@
             width: 100%;
             height: 100%;
             background: #000;
-            z-index: 100000;
+            z-index: 10000;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: opacity 0.8s ease-in-out;
         }
-
-        .preloader-wrap {
-            text-align: center;
-        }
-
         .preloader-logo {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            letter-spacing: 6px;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(20px);
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: var(--text-main);
         }
 
-        .preloader-bar {
-            width: 200px;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            position: relative;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .preloader-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            background: var(--accent);
-        }
-
-        /* ==========================================================================
-           5. NAVIGATION (PREMIUM HEADER)
-           ========================================================================== */
+        /* --- NAVIGATION --- */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 35px 60px;
+            padding: 30px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 999;
-            mix-blend-mode: difference;
+            backdrop-filter: blur(10px);
+            background: rgba(7, 7, 10, 0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
         }
 
         .logo {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
             font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--text-main);
+            letter-spacing: 3px;
+            color: #fff;
             text-decoration: none;
             text-transform: uppercase;
         }
@@ -204,726 +98,379 @@
             color: var(--accent);
         }
 
-        .nav-toggle {
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            background: none;
-            border: none;
-            padding: 10px;
-            z-index: 1001;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 30px;
-            height: 2px;
-            background: #fff;
-            transition: var(--transition-smooth);
-        }
-
-        /* Fullscreen Menu Overlay */
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0d;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-            transform: translateY(-100%);
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-        }
-
-        .nav-overlay.active {
-            transform: translateY(0);
-        }
-
-        .nav-menu {
             list-style: none;
+            gap: 30px;
         }
 
-        .nav-item {
-            margin: 25px 0;
-            overflow: hidden;
-        }
-
-        .nav-link {
-            font-family: var(--font-serif);
-            font-size: 4rem;
-            font-weight: 700;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+        .nav-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            text-transform: uppercase;
-            display: inline-block;
-            transition: var(--transition-smooth);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
 
-        .nav-link:hover {
-            color: var(--text-main);
-            -webkit-text-stroke: 1px var(--text-main);
-            transform: translateX(20px);
-        }
-
-        .nav-link span {
+        .nav-links a:hover {
             color: var(--accent);
         }
 
-        /* ==========================================================================
-           6. HERO SECTION (INTERACTIVE KINETIC TEXT)
-           ========================================================================== */
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             padding: 0 10%;
+            position: relative;
+            background: radial-gradient(circle at center, #13131a 0%, #07070a 80%);
         }
 
-        .hero-title-container {
+        .hero-content {
             text-align: center;
-            z-index: 2;
-        }
-
-        .hero-title-sub {
-            font-family: var(--font-sans);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--accent);
-            margin-bottom: 20px;
-            display: block;
+            max-width: 900px;
         }
 
         .hero h1 {
-            font-family: var(--font-serif);
-            font-size: 6.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
             font-weight: 700;
             line-height: 1.1;
             text-transform: uppercase;
-            letter-spacing: -2px;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(40px);
         }
 
-        .hero h1 .split-word {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-
-        .hero-scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        .hero p {
             color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
+        .cta-btn {
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+            display: inline-block;
+            opacity: 0;
         }
 
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
+        .cta-btn:hover {
             background: var(--accent);
-            animation: scrollDrop 2s infinite ease-in-out;
+            color: #000;
+            transform: scale(1.05);
         }
 
-        @keyframes scrollDrop {
-            0% { top: -50%; }
-            100% { top: 100%; }
-        }
-
-        /* ==========================================================================
-           7. ABOUT SECTION (3D PARALLAX INTERACTION)
-           ========================================================================== */
+        /* --- ABOUT --- */
         .about {
-            padding: 150px 10%;
-            position: relative;
+            padding: 140px 10%;
         }
 
         .grid-about {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
-        .about-text-block {
-            grid-column: 1 / 6;
-            z-index: 3;
-        }
-
-        .about-image-block {
-            grid-column: 6 / 13;
-            position: relative;
-            height: 650px;
-            border-radius: 20px;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-
-        .about-image-block img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.1);
-            transition: transform 0.5s ease-out;
-        }
-
-        .section-num {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: var(--accent);
-            display: block;
-            margin-bottom: 15px;
-        }
-
         .section-title {
-            font-family: var(--font-serif);
-            font-size: 3.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
             text-transform: uppercase;
-            margin-bottom: 40px;
-            line-height: 1.2;
-        }
-
-        .about-p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.8;
             margin-bottom: 30px;
         }
 
-        /* ==========================================================================
-           8. HORIZONTAL SCROLL PORTFOLIO SHOWCASE (THE CORE ENGINE)
-           ========================================================================== */
-        .horizontal-scroll-container {
-            position: relative;
-            width: 100%;
-            background: #09090b;
+        .about-p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .about-img-wrap {
+            height: 550px;
+            border-radius: 16px;
             overflow: hidden;
         }
 
-        .horizontal-scroll-wrapper {
+        .about-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- HORIZONTAL PORTFOLIO ENGINE --- */
+        .horizontal-container {
+            position: relative;
+            width: 100%;
+            background: #030305;
+            overflow: hidden;
+        }
+
+        .horizontal-wrapper {
             display: flex;
             flex-wrap: nowrap;
-            width: 400vw; /* Štyri plné obrazovky na dĺžku */
+            width: 300vw;
             height: 100vh;
             will-change: transform;
         }
 
-        .horizontal-slide {
+        .slide {
             width: 100vw;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            position: relative;
             padding: 0 10%;
         }
 
-        .slide-inner {
+        .slide-card {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: 7fr 5fr;
             gap: 40px;
             width: 100%;
             align-items: center;
         }
 
-        .slide-img-wrap {
-            grid-column: 1 / 8;
-            height: 70vh;
-            border-radius: 15px;
+        .slide-img {
+            height: 65vh;
+            border-radius: 12px;
             overflow: hidden;
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        .slide-img-wrap img {
+        .slide-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            will-change: transform;
         }
 
-        .slide-content-wrap {
-            grid-column: 9 / 13;
-        }
-
-        .slide-category {
-            font-size: 0.85rem;
+        .slide-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: block;
+            margin-bottom: 20px;
         }
 
-        .slide-title {
-            font-family: var(--font-serif);
-            font-size: 3.8rem;
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            line-height: 1.1;
-        }
-
-        .slide-desc {
+        .slide-content p {
             color: var(--text-muted);
-            line-height: 1.7;
-            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
-        /* ==========================================================================
-           9. DUO TEAM CREATORS SECTION (3D TILT CARDS)
-           ========================================================================== */
-        .team-section {
-            padding: 160px 10%;
-            position: relative;
+        /* --- TEAM --- */
+        .team {
+            padding: 140px 10%;
         }
 
-        .team-container {
-            display: flex;
-            gap: 50px;
-            margin-top: 60px;
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
         }
 
-        .tilt-card {
-            flex: 1;
+        .member-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 24px;
-            padding: 40px;
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
-            transition: border-color 0.3s;
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: border-color 0.4s;
         }
 
-        .tilt-card:hover {
-            border-color: rgba(var(--accent-rgb), 0.3);
+        .member-card:hover {
+            border-color: var(--accent);
         }
 
-        .tilt-card-img {
+        .member-img {
             width: 100%;
             height: 400px;
             object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            transform: translateZ(30px);
+            border-radius: 12px;
+            margin-bottom: 25px;
         }
 
-        .tilt-card-tag {
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            font-weight: 700;
-            display: block;
+        .member-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            transform: translateZ(15px);
         }
 
-        .tilt-card h3 {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            margin-bottom: 15px;
-            transform: translateZ(25px);
-        }
-
-        .tilt-card p {
-            color: var(--text-muted);
-            line-height: 1.7;
-            transform: translateZ(10px);
-        }
-
-        /* ==========================================================================
-           10. INTERACTIVE CINEMATIC FILTER GRID
-           ========================================================================== */
-        .filter-section {
-            padding: 120px 10%;
-        }
-
-        .filter-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 60px;
-        }
-
-        .filter-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-main);
-            padding: 14px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            transition: var(--transition-smooth);
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            border-color: var(--accent);
-            background: var(--accent);
-            color: #000;
-            box-shadow: 0 10px 25px rgba(var(--accent-rgb), 0.2);
-        }
-
-        .grid-portfolio {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .grid-item {
-            position: relative;
-            height: 450px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #111;
-            transform-origin: center;
-            transition: opacity 0.4s, transform 0.4s;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .grid-item:hover img {
-            transform: scale(1.08) rotate(1deg);
-        }
-
-        .grid-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 70%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 40px;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .grid-item:hover .grid-overlay {
-            opacity: 1;
-        }
-
-        .grid-overlay h4 {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            transform: translateY(20px);
-            transition: transform 0.4s 0.1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .grid-item:hover .grid-overlay h4 {
-            transform: translateY(0);
-        }
-
-        .grid-overlay span {
+        .member-role {
             color: var(--accent);
-            font-size: 0.85rem;
             text-transform: uppercase;
+            font-size: 0.85rem;
             letter-spacing: 2px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 15px;
         }
 
-        /* ==========================================================================
-           11. IMMERSIVE CONTACT INTERACTION
-           ========================================================================== */
-        .contact-section {
-            padding: 150px 10%;
-            background: #070709;
-            position: relative;
+        /* --- CONTACT --- */
+        .contact {
+            padding: 140px 10%;
+            background: #040406;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 80px;
         }
 
-        .input-wrapper {
+        .form-group {
             position: relative;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
-        .creative-input {
+        .form-input {
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 0;
             color: #fff;
             font-size: 1.1rem;
             transition: border-color 0.3s;
         }
 
-        .creative-input:focus {
+        .form-input:focus {
             outline: none;
             border-color: var(--accent);
         }
 
-        .input-label {
-            position: absolute;
-            top: 15px;
-            left: 0;
-            color: var(--text-muted);
-            pointer-events: none;
-            transition: var(--transition-smooth);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .creative-input:focus ~ .input-label,
-        .creative-input:valid ~ .input-label {
-            top: -20px;
-            font-size: 0.75rem;
-            color: var(--accent);
-        }
-
-        .form-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 2px;
-            width: 0%;
-            background: var(--accent);
-            transition: width 0.4s ease;
-        }
-
-        .creative-input:focus ~ .form-line {
-            width: 100%;
-        }
-
-        .submit-btn {
+        .form-btn {
             background: transparent;
             border: 1px solid var(--accent);
             color: #fff;
-            padding: 20px 50px;
-            border-radius: 40px;
+            padding: 16px 45px;
+            border-radius: 30px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            overflow: hidden;
-            position: relative;
-            transition: color 0.4s;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
+        .form-btn:hover {
             background: var(--accent);
-            z-index: -1;
-            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .submit-btn:hover {
             color: #000;
         }
 
-        .submit-btn:hover::before {
-            width: 100%;
-        }
-
-        /* ==========================================================================
-           12. FOOTER
-           ========================================================================== */
         footer {
-            padding: 60px 10%;
-            border-top: 1px solid rgba(255,255,255,0.03);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
+            padding: 40px 10%;
+            text-align: center;
+            font-size: 0.85rem;
             color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.02);
         }
 
-        .footer-socials {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-socials a {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .footer-socials a:hover {
-            color: var(--accent);
-        }
-
-        /* ==========================================================================
-           13. RESPONSIVE LAYER
-           ========================================================================== */
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .hero h1 { font-size: 4.5rem; }
-            .grid-about { grid-template-columns: 1fr; }
-            .about-text-block, .about-image-block { grid-column: auto; height: auto; }
-            .about-image-block { height: 450px; }
-            .horizontal-scroll-wrapper { width: auto; height: auto; flex-direction: column; }
-            .horizontal-slide { width: 100vw; height: auto; padding: 80px 5%; }
-            .slide-inner { grid-template-columns: 1fr; }
-            .slide-img-wrap, .slide-content-wrap { grid-column: auto; }
-            .slide-img-wrap { height: 50vh; }
-            .team-container { flex-direction: column; }
-            .grid-portfolio { grid-template-columns: 1fr 1fr; }
-            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
-        }
-
-        @media (max-width: 768px) {
+            .grid-about, .slide-card, .team-grid, .contact-grid { grid-template-columns: 1fr; }
+            .horizontal-container { overflow: visible; }
+            .horizontal-wrapper { display: block; width: auto; height: auto; }
+            .slide { width: auto; height: auto; padding: 60px 0; }
+            .slide-img { height: 450px; }
             .hero h1 { font-size: 3rem; }
-            .grid-portfolio { grid-template-columns: 1fr; }
             header { padding: 20px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="custom-cursor" id="js-cursor"></div>
-    <div class="custom-cursor-follower" id="js-follower"></div>
-
-    <div class="ambient-glow" id="ambient-glow"></div>
-
+    <!-- PRELOADER -->
     <div class="preloader" id="preloader">
-        <div class="preloader-wrap">
-            <div class="preloader-logo">VISUAL STORIES</div>
-            <div class="preloader-bar">
-                <div class="preloader-progress" id="preloader-progress"></div>
-            </div>
-        </div>
+        <div class="preloader-logo">VISUAL STORIES</div>
     </div>
 
+    <!-- HEADER -->
     <header>
         <a href="#" class="logo">Visual<span>Stories</span></a>
-        <button class="nav-toggle" id="menu-btn">
-            <span></span>
-            <span></span>
-        </button>
+        <ul class="nav-links">
+            <li><a href="#">Domov</a></li>
+            <li><a href="#about">O nás</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#team">Tím</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
     </header>
 
-    <div class="nav-overlay" id="menu-overlay">
-        <ul class="nav-menu">
-            <li class="nav-item"><a href="#" class="nav-link"><span>01.</span> Domov</a></li>
-            <li class="nav-item"><a href="#about" class="nav-link"><span>02.</span> O Nás</a></li>
-            <li class="nav-item"><a href="#portfolio-trigger" class="nav-link"><span>03.</span> Výstavy</a></li>
-            <li class="nav-item"><a href="#gallery" class="nav-link"><span>04.</span> Archív</a></li>
-            <li class="nav-item"><a href="#contact" class="nav-link"><span>05.</span> Kontakt</a></li>
-        </ul>
-    </div>
-
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-title-container">
-            <span class="hero-title-sub">PREMIUM PHOTO & VIDEO</span>
-            <h1 id="hero-title">Zachytené<br>Momenty Tváre</h1>
-        </div>
-        <div class="hero-scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
+        <div class="hero-content">
+            <h1 id="hero-h1">Zachytené Spomienky</h1>
+            <p id="hero-p">Sme kreatívne duo — fotografka a filmár. Tvoríme vizuálne príbehy z vašich najkrajších dní: prémiové svadby, stužkové a životné udalosti.</p>
+            <a href="#about" class="cta-btn" id="hero-btn">Spoznať tvorbu</a>
         </div>
     </section>
 
+    <!-- ABOUT -->
     <section class="about" id="about">
         <div class="grid-about">
-            <div class="about-text-block">
-                <span class="section-num">01 // AKO TVORÍME</span>
-                <h2 class="section-title">Hľadáme filmovú realitu</h2>
-                <p class="about-p">Nie sme fanúšikovia nútených póz a umelých úsmevov. Vaša stužková alebo svadba má svoj vlastný, prirodzený rytmus. Našou úlohou je splynúť s prostredím a zachytiť surové emócie.</p>
-                <p class="about-p">Spojenie špičkovej kamerovej techniky a citu pre detail nám umožňuje vytvoriť komplexné umelecké dielo z vášho dňa.</p>
+            <div>
+                <h2 class="section-title">Náš prístup</h2>
+                <p class="about-p">Zameriavame sa na autentické, nestrojené momenty. Veríme, že najlepšie zábery vznikajú vtedy, keď zabudnete na prítomnosť kamery a fotoaparátu.</p>
+                <p class="about-p">Spoločne tvoríme dokonale zladený výstup, kedy video a fotografie rozprávajú rovnaký príbeh v jednotnom filmovom štýle.</p>
             </div>
-            <div class="about-image-block" id="about-img-container">
-                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200" alt="Kreatívna tvorba" id="about-img">
+            <div class="about-img-wrap">
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800" alt="Kreatívna tvorba">
             </div>
         </div>
     </section>
 
-    <div id="portfolio-trigger"></div>
-    <div class="horizontal-scroll-container">
+    <!-- HORIZONTAL PORTFOLIO -->
+    <div class="horizontal-container" id="portfolio">
         <div class="horizontal-wrapper" id="horizontal-wrapper">
             
-            <div class="horizontal-slide">
-                <div class="slide-inner">
-                    <div class="slide-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" alt="Svadobný príbeh">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <div class="slide-card">
+                    <div class="slide-img">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="Svadba">
                     </div>
-                    <div class="slide-content-wrap">
-                        <span class="slide-category">Svadobný Deň</span>
-                        <h3 class="slide-title">Elena & Mário</h3>
-                        <p class="slide-desc">Cinematic zostrih a set fotografií zameraný na atmosféru starého zámku v kombinácii s divokou modernou oslavou.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="horizontal-slide">
-                <div class="slide-inner">
-                    <div class="slide-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200" alt="Stužková slávnosť">
-                    </div>
-                    <div class="slide-content-wrap">
-                        <span class="slide-category">Gala Udalosť</span>
-                        <h3 class="slide-title">Gymnázium 2026</h3>
-                        <p class="slide-desc">Dychberúca energia mladej generácie zachytená dynamickým strihom a reportážnou fotografiou priamo z parketu.</p>
+                    <div class="slide-content">
+                        <h3>Svadobné Príbehy</h3>
+                        <p>Zamerané na eleganciu, prirodzené svetlo a surové emócie. Vašu svadbu zachytíme ako ucelený autorský film.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="horizontal-slide">
-                <div class="slide-inner">
-                    <div class="slide-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200" alt="Umelecký projekt">
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-card">
+                    <div class="slide-img">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800" alt="Stužková">
                     </div>
-                    <div class="slide-content-wrap">
-                        <span class="slide-category">Editorial</span>
-                        <h3 class="slide-title">Hmla a Svetlo</h3>
-                        <p class="slide-desc">Portrétna séria fotená za úsvitu, experimentujúca s dymovými efektmi a polarizačnými filtrami kamery.</p>
+                    <div class="slide-content">
+                        <h3>Stužkové Slávnosti</h3>
+                        <p>Dynamická energia, smiech a dôležitý životný krok. Zachytávame nielen formálnu časť, ale aj nespútanú zábavu.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="horizontal-slide">
-                <div class="slide-inner">
-                    <div class="slide-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1200" alt="Afterparty">
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-card">
+                    <div class="slide-img">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=800" alt="Portrét">
                     </div>
-                    <div class="slide-content-wrap">
-                        <span class="slide-category">Emócie</span>
-                        <h3 class="slide-title">Nekonečná Noc</h3>
-                        <p class="slide-desc">Zachytávame momenty, keď všetka formálnosť opadne. Surová radosť, tanec a smiech v neskorých hodinách.</p>
+                    <div class="slide-content">
+                        <h3>Umelecké Portréty</h3>
+                        <p>Editoriály a individuálne fotenia navrhnuté na mieru. Experimentujeme s tieňmi, hmlou a nočným svetlom.</p>
                     </div>
                 </div>
             </div>
@@ -931,366 +478,95 @@
         </div>
     </div>
 
-    <section class="team-section">
-        <span class="section-num">02 // KTO SME</span>
-        <h2 class="section-title">Dva pohľady, jeden celok</h2>
-        
-        <div class="team-container">
-            <div class="tilt-card" data-tilt>
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="Peter" class="tilt-card-img">
-                <span class="tilt-card-tag">Director of Photography</span>
-                <h3>Peter / Kameraman</h3>
-                <p>Moja práca začína tam, kde končí obyčajný záznam. Sústredím sa na grading farieb, sound design a kompozíciu, vďaka ktorej vaše spomienky vyzerajú ako celovečerný film.</p>
+    <!-- TEAM -->
+    <section class="team" id="team">
+        <h2 class="section-title" style="text-align: center;">Kto stojí za objektívom</h2>
+        <div class="team-grid">
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="Peter" class="member-img">
+                <span class="member-role">Cinematographer</span>
+                <h3>Peter</h3>
+                <p>Mám na starosti pohyb, rytmus a zvuk. Každé video precízne farbím a strihám tak, aby malo filmovú hĺbku.</p>
             </div>
-            
-            <div class="tilt-card" data-tilt>
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600" alt="Veronika" class="tilt-card-img">
-                <span class="tilt-card-tag">Lead Visual Artist</span>
-                <h3>Veronika / Fotografka</h3>
-                <p>Hľadám okamihy, ktoré trvajú zlomok sekundy. Moje fotografie sú čisté, svetlé a nabité autenticitou. Milujem prácu s prirodzeným svetlom a emóciami ľudí.</p>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600" alt="Veronika" class="member-img">
+                <span class="member-role">Photographer</span>
+                <h3>Veronika</h3>
+                <p>Hľadám detaily, úprimné úsmevy a slzy šťastia. Sústredím sa na nadčasové kompozície, ktoré nestratia čaro.</p>
             </div>
         </div>
     </section>
 
-    <section class="filter-section" id="gallery">
-        <span class="section-num">03 // ARCHÍV PRÁC</span>
-        <h2 class="section-title" style="text-align: center;">Prehliadajte príbehy</h2>
-
-        <div class="filter-controls">
-            <button class="filter-btn active" data-filter="all">Všetko</button>
-            <button class="filter-btn" data-filter="wedding">Svadby</button>
-            <button class="filter-btn" data-filter="gala">Stužkové</button>
-        </div>
-
-        <div class="grid-portfolio" id="grid-portfolio">
-            <div class="grid-item wedding">
-                <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=500" alt="Portfolio item">
-                <div class="grid-overlay"><span>Svadba</span><h4>Michala & Tomáš</h4></div>
-            </div>
-            <div class="grid-item gala">
-                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=500" alt="Portfolio item">
-                <div class="grid-overlay"><span>Stužková</span><h4>SPŠE 2025</h4></div>
-            </div>
-            <div class="grid-item wedding">
-                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=500" alt="Portfolio item">
-                <div class="grid-overlay"><span>Svadba</span><h4>Natália & Filip</h4></div>
-            </div>
-            <div class="grid-item gala">
-                <img src="https://images.unsplash.com/photo-1505232458627-539c9f281a3d?q=80&w=500" alt="Portfolio item">
-                <div class="grid-overlay"><span>Stužková</span><h4>Gymnázium Košice</h4></div>
-            </div>
-            <div class="grid-item wedding">
-                <img src="https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=500" alt="Portfolio item">
-                <div class="grid-overlay"><span>Svadba</span><h4>Romana & Denis</h4></div>
-            </div>
-            <div class="grid-item gala">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=500" alt="Portfolio item">
-                <div class="grid-overlay"><span>Stužková</span><h4>Stredná Zdravotná</h4></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section" id="contact">
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
         <div class="contact-grid">
             <div>
-                <span class="section-num">04 // REZERVÁCIA</span>
-                <h2 class="section-title">Napíšte nám svoj príbeh</h2>
-                <p class="about-p">Povedzte nám o vašich plánoch. Aký je dátum vašej udalosti? Akú máte predstavu? Tvoríme obmedzený počet projektov ročne, aby sme si udržali maximálnu kvalitu.</p>
+                <h2 class="section-title">Napíšte nám</h2>
+                <p class="about-p">Plánujete svadbu alebo stužkovú? Povedzte nám niečo o vašich predstavách, termíne a mieste konania. Radi sa s vami stretneme osobne.</p>
             </div>
             <div>
-                <form id="contactForm" autocomplete="off" onsubmit="event.preventDefault();">
-                    <div class="input-wrapper">
-                        <input type="text" class="creative-input" required id="name">
-                        <label class="input-label">Vaše Meno</label>
-                        <div class="form-line"></div>
+                <form onsubmit="event.preventDefault(); alert('Správa odoslaná!');">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="VAŠE MENO" required>
                     </div>
-                    <div class="input-wrapper">
-                        <input type="email" class="creative-input" required id="email">
-                        <label class="input-label">E-mailová adresa</label>
-                        <div class="form-line"></div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="E-MAIL" required>
                     </div>
-                    <div class="input-wrapper">
-                        <input type="text" class="creative-input" required id="event">
-                        <label class="input-label">Typ Akcie & Dátum</label>
-                        <div class="form-line"></div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="TYP UDALOSTI A DÁTUM" required>
                     </div>
-                    <button class="submit-btn" type="submit">Odoslať nezáväzný dopyt</button>
+                    <button type="submit" class="form-btn">Odoslať dopyt</button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 VisualStories. Všetky práva vyhradené.</p>
-        <div class="footer-socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-vimeo-v"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-        </div>
     </footer>
 
+    <!-- GSAP CORE & SCROLLTRIGGER SCRIPT INJECTIONS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-        /* ==========================================================================
-           JS COMPONENT 1: PRELOADER ENGINE
-           ========================================================================== */
-        window.addEventListener('DOMContentLoaded', () => {
-            const progress = document.getElementById('preloader-progress');
+        // Preloader vypnutie
+        window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
-            
-            gsap.to('.preloader-logo', { opacity: 1, y: 0, duration: 1 });
-            
-            let width = 0;
-            const interval = setInterval(() => {
-                width += Math.random() * 15;
-                if(width >= 100) {
-                    width = 100;
-                    clearInterval(interval);
-                    
-                    // Odchod preloaderu dohora
-                    const tl = gsap.timeline();
-                    tl.to(preloader, {
-                        yPercent: -100,
-                        duration: 1.2,
-                        ease: 'power4.inOut',
-                        onComplete: () => {
-                            preloader.style.display = 'none';
-                            initMainAnimations();
-                        }
-                    });
-                }
-                progress.style.width = width + '%';
-            }, 80);
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                initAnimations();
+            }, 800);
         });
 
-        /* ==========================================================================
-           JS COMPONENT 2: INTERACTIVE CUSTOM CURSOR & HOVER ENGINE
-           ========================================================================== */
-        const cursor = document.getElementById('js-cursor');
-        const follower = document.getElementById('js-follower');
-        let mouseX = 0, mouseY = 0;
-        let posX = 0, posY = 0;
+        function initAnimations() {
+            // Aktivácia GSAP
+            gsap.registerPlugin(ScrollTrigger);
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Okamžitý stredový bod
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-        });
+            // Intro animácia pre Hero sekciu
+            gsap.to('#hero-h1', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+            gsap.to('#hero-p', { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+            gsap.to('#hero-btn', { opacity: 1, duration: 1, delay: 0.6 });
 
-        // Plynulé dobiehanie follower kruhu
-        function animateFollower() {
-            posX += (mouseX - posX) * 0.1;
-            posY += (mouseY - posY) * 0.1;
-            follower.style.left = posX + 'px';
-            follower.style.top = posY + 'px';
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
-
-        // Priradenie interaktívnych tried pre kurzor na odkazy
-        const setupHovers = () => {
-            const interactables = document.querySelectorAll('a, button, .grid-item, .filter-btn');
-            interactables.forEach(item => {
-                item.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-                item.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-            });
-        };
-        setupHovers();
-
-        /* ==========================================================================
-           JS COMPONENT 3: FLUID AMBIENT GENERATOR
-           ========================================================================== */
-        const ambientContainer = document.getElementById('ambient-glow');
-        const colors = ['var(--accent)', '#4c1d95', '#0f172a'];
-        
-        for(let i = 0; i < 4; i++) {
-            const blob = document.createElement('div');
-            blob.classList.add('blob');
-            blob.style.width = gsap.utils.random(300, 700) + 'px';
-            blob.style.height = gsap.utils.random(300, 700) + 'px';
-            blob.style.left = gsap.utils.random(0, 100) + 'vw';
-            blob.style.top = gsap.utils.random(0, 100) + 'vh';
-            ambientContainer.appendChild(blob);
-            
-            // Nekonečná tekutá animácia pozície kruhov
-            gsap.to(blob, {
-                x: '+=200',
-                y: '+=200',
-                duration: gsap.utils.random(10, 20),
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-        }
-
-        /* ==========================================================================
-           JS COMPONENT 4: FULLSCREEN MENU TOGGLE
-           ========================================================================== */
-        const menuBtn = document.getElementById('menu-btn');
-        const overlay = document.getElementById('menu-overlay');
-        
-        menuBtn.addEventListener('click', () => {
-            overlay.classList.toggle('active');
-            if(overlay.classList.contains('active')) {
-                gsap.fromTo('.nav-link', {y: 100, opacity: 0}, {y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out'});
-                menuBtn.children[0].style.transform = 'rotate(45deg) translate(6px, 5px)';
-                menuBtn.children[1].style.transform = 'rotate(-45deg) translate(6px, -5px)';
-            } else {
-                menuBtn.children[0].style.transform = 'none';
-                menuBtn.children[1].style.transform = 'none';
-            }
-        });
-
-        // Zatvorenie menu po kliknutí na položku
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                overlay.classList.remove('active');
-                menuBtn.children[0].style.transform = 'none';
-                menuBtn.children[1].style.transform = 'none';
-            });
-        });
-
-        /* ==========================================================================
-           JS COMPONENT 5: GSAP + SCROLLTRIGGER ANIMATION INTERFACES
-           ========================================================================== */
-        gsap.registerPlugin(ScrollTrigger);
-
-        function initMainAnimations() {
-            // Text Splitting pre nadpis v Hero sekcii
-            const title = document.getElementById('hero-title');
-            const originalText = title.innerHTML;
-            const words = originalText.split('<br>');
-            
-            title.innerHTML = words.map(w => {
-                return `<span class="split-word">${w.split('').map(letter => `<span class="letter" style="display:inline-block">${letter === ' ' ? '&nbsp;' : letter}</span>`).join('')}</span>`;
-            }).join('<br>');
-
-            // Animácia textu pri načítaní
-            gsap.from('.letter', {
-                y: 120,
-                rotate: 10,
-                opacity: 0,
-                duration: 1.2,
-                stagger: 0.03,
-                ease: 'power4.out'
-            });
-
-            // Parallax efekt na fotke v sekcii "O nás" viazaný na skrolovanie
-            gsap.to('#about-img', {
-                scrollTrigger: {
-                    trigger: '#about-img-container',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true
-                },
-                yPercent: -15,
-                scale: 1.25,
-                ease: 'none'
-            });
-
-            /* ==========================================================================
-               JS COMPONENT 6: CINEMATIC HORIZONTAL SCROLL ENGINE
-               ========================================================================== */
-            const horizontalWrapper = document.getElementById('horizontal-wrapper');
-            
-            gsap.to(horizontalWrapper, {
-                x: () => -(horizontalWrapper.scrollWidth - window.innerWidth),
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.horizontal-scroll-container',
-                    pin: true,
-                    scrub: 1,
-                    start: 'top top',
-                    end: () => '+=' + (horizontalWrapper.scrollWidth - window.innerWidth),
-                    invalidateOnRefresh: true
-                }
-            });
-
-            // Parallax a zoom efekt na fotkách vnútri horizontálneho scrollu
-            const slides = document.querySelectorAll('.slide-img-wrap img');
-            slides.forEach(img => {
-                gsap.fromTo(img, 
-                    { xPercent: -10, scale: 1.1 },
-                    { 
-                        xPercent: 10, 
-                        scale: 1,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: img.closest('.horizontal-slide'),
-                            containerAnimation: gsap.getById('horizontalWrapper'), // Ak sa viaže na container
-                            start: 'left right',
-                            end: 'right left',
-                            scrub: true
-                        }
-                    }
-                );
-            });
-        }
-
-        /* ==========================================================================
-           JS COMPONENT 7: 3D INTERACTIVE TILT ENGINE
-           ========================================================================== */
-        const cards = document.querySelectorAll('[data-tilt]');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const xc = rect.width / 2;
-                const yc = rect.height / 2;
-                
-                const angleX = (yc - y) / 15;
-                const angleY = (x - xc) / 15;
-                
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-            });
-        });
-
-        /* ==========================================================================
-           JS COMPONENT 8: DYNAMIC LAYOUT MORPHING FILTER
-           ========================================================================== */
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const gridItems = document.querySelectorAll('.grid-item');
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filterValue = btn.getAttribute('data-filter');
-                
-                gridItems.forEach(item => {
-                    // Odmorfovanie/skrytie položiek plynulým zmenšením
-                    if(filterValue === 'all' || item.classList.contains(filterValue)) {
-                        gsap.to(item, {
-                            scale: 1,
-                            opacity: 1,
-                            duration: 0.5,
-                            display: 'block',
-                            ease: 'power3.out'
-                        });
-                    } else {
-                        gsap.to(item, {
-                            scale: 0.8,
-                            opacity: 0,
-                            duration: 0.5,
-                            display: 'none',
-                            ease: 'power3.out'
-                        });
+            // Horizontálny scroll pre portfólio (iba na desktopoch nad 1024px)
+            if (window.innerWidth > 1024) {
+                const wrapper = document.getElementById('horizontal-wrapper');
+                gsap.to(wrapper, {
+                    x: () => -(wrapper.scrollWidth - window.innerWidth),
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '#portfolio',
+                        pin: true,
+                        scrub: 1,
+                        start: 'top top',
+                        end: () => '+=' + (wrapper.scrollWidth - window.innerWidth),
+                        invalidateOnRefresh: true
                     }
                 });
-            });
-        });
+            }
+        }
     </script>
 </body>
 </html>
